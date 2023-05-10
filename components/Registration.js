@@ -1,0 +1,311 @@
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize
+} from "react-native-responsive-dimensions";
+import CheckBox from '@react-native-community/checkbox';
+import SelectGender from './SelectGender';
+// import auth from '@react-native-firebase/auth';
+
+export default function Registration(props) {
+  const [firstname, setFirstName] = useState('');
+  const [firstnameError, setFirstNameError] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [lastnameError, setLastNameError] = useState('');
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [pass, setPass] = useState('');
+  const [passError, setPassError] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+  const [selected, setSelection] = useState(false);
+
+
+  const handleFirstNameChange = text => {
+    if (text.length < 3) {
+      setFirstNameError('Name must be at least 3 characters');
+    } else {
+      setFirstNameError('');
+    }
+    setFirstName(text);
+  };
+
+  const handleLastNameChange = text => {
+    if (text.length < 3) {
+      setLastNameError('Name must be at least 3 characters');
+    } else {
+      setLastNameError('');
+    }
+    setLastName(text);
+  };
+
+  const handleEmailChange = text => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(text)) {
+      setEmailError('Invalid email address ');
+    } else {
+      setEmailError('');
+    }
+    setEmail(text);
+  };
+
+  const handlePassChange = text => {
+    const passtrim = pass.trim()
+    const passRegex = /^(?!\s)(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passRegex.test(text)) {
+      setPassError('Weak Password');
+    } else {
+      setPassError('');
+    }
+    setPass(text);
+  };
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const isRegisterButtonDisabled =
+    !firstname ||
+    !lastname ||
+    !email ||
+    !pass ||
+    firstnameError ||
+    lastnameError ||
+    emailError ||
+    passError;
+  return (
+
+    <View>
+      <View >
+        <Text style={styles.para1}>
+          Register
+        </Text>
+        <View style={styles.fname}>
+          <Image style={styles.flogo} source={require('../assets/Profile.png')} />
+          <TextInput
+            placeholder="First Name" placeholderTextColor={'grey'} color='black'
+            value={firstname}
+            onChangeText={handleFirstNameChange}
+          />
+        </View>
+        {firstnameError ? (
+          <Text style={styles.error}>{firstnameError}</Text>
+        ) : null}
+
+        <View style={styles.lname}>
+          <Image style={styles.llogo} source={require('../assets/Profile.png')} />
+          <TextInput
+            placeholder="Last Name" placeholderTextColor={'grey'} color='black'
+            value={lastname}
+            onChangeText={handleLastNameChange}
+          />
+
+        </View>
+        {lastnameError ? (
+          <Text style={styles.error}>{lastnameError}</Text>
+        ) : null}
+
+        <View style={styles.email}>
+          <Image style={styles.elogo} source={require('../assets/Message.png')} />
+          <TextInput
+            placeholder="Email" placeholderTextColor={'grey'} color='black'
+            value={email}
+            onChangeText={handleEmailChange}
+            keyboardType="email-address"
+            autoCapitalize="none"
+          />
+        </View>
+        {emailError ? <Text style={styles.error}>{emailError}</Text> : null}
+
+        <SelectGender></SelectGender>
+
+        <View style={styles.pass}>
+          <Image style={styles.plogo} source={require('../assets/Lock.png')} />
+          <TextInput
+            placeholder="Password" placeholderTextColor={'grey'} color='black'
+            value={pass}
+            onChangeText={handlePassChange}
+
+          />
+        </View>
+        {passError ? <Text style={styles.error}>{passError}</Text> : null}
+
+        <View style={styles.pass}>
+          <Image style={styles.plogo} source={require('../assets/Lock.png')} />
+          <TextInput
+            placeholder="Confirm Password" placeholderTextColor={'grey'} color='black'
+            value={pass}
+            onChangeText={handlePassChange}
+      
+          />
+        </View>
+        {passError ? <Text style={styles.error}>{passError}</Text> : null}
+
+        <View style={styles.checkb}>
+
+          <CheckBox style={{ marginLeft: responsiveWidth(5), marginTop: responsiveHeight(1), borderColor: 'grey' }}
+            value={selected}
+            onPress={handleCheckboxChange}
+            onValueChange={setSelection}
+            tintColors={{ true: '#2530A3', false: 'grey' }}
+          />
+          <Text style={styles.checktext} >i agree with Privacy Policy and Term & Conditions</Text>
+        </View>
+        {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
+      </View>
+
+      <TouchableOpacity
+        style={[styles.mybtn, isRegisterButtonDisabled && styles.disabledButton]}
+        onPress={() => props.navigation.navigate('SelectPre')}
+        disabled={isRegisterButtonDisabled}
+      >
+        <Text style={styles.btntext}>Register</Text>
+      </TouchableOpacity>
+
+      {/* style={styles.mybtn} onPress={() => {
+        createUser();
+
+      }} */}
+
+      {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: responsiveHeight(2) }}>
+        <View style={{ flex: 1, height: responsiveHeight(0.1), backgroundColor: 'grey' }} />
+        <View>
+          <Text style={{ marginLeft: responsiveWidth(5), marginRight: responsiveWidth(5), textAlign: 'center', fontSize: responsiveFontSize(2) }}>or</Text>
+        </View>
+        <View style={{ flex: 1, height: responsiveHeight(0.1), backgroundColor: 'grey' }} />
+      </View> */}
+      <View style={styles.loginlink}>
+        <Text>Already have an account?</Text>
+        <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+          <Text style={{ color: '#C58BF2' }}> Login</Text>
+        </TouchableOpacity>
+      </View>
+
+    </View>
+  )
+
+}
+const styles = StyleSheet.create({
+  fname: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderColor: 'black',
+    borderRadius: 25,
+    borderWidth: 1,
+    width: responsiveWidth(80),
+    height: responsiveHeight(7),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(4)
+  },
+  lname: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderRadius: 25,
+    borderWidth: 1,
+    width: responsiveWidth(80),
+    height: responsiveHeight(7),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(2)
+  },
+  email: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderRadius: 25,
+    borderWidth: 1,
+    width: responsiveWidth(80),
+    height: responsiveHeight(7),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(2)
+  },
+  pass: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderRadius: 25,
+    borderWidth: 1,
+    width: responsiveWidth(80),
+    height: responsiveHeight(7),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(2)
+  },
+  para1: {
+
+    fontSize: responsiveFontSize(4),
+    fontWeight: 'bold',
+    color: '#5A61C9',
+    marginLeft: responsiveWidth(12),
+    marginTop: responsiveHeight(4)
+
+  },
+
+  mybtn: {
+    backgroundColor: '#92A3FD',
+    borderRadius: 30,
+    width: responsiveWidth(80),
+    height: responsiveHeight(6.8),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(6)
+  },
+  disabledButton: {
+  backgroundColor: 'grey',
+  borderRadius: 30,
+  width: responsiveWidth(80),
+  height: responsiveHeight(6.8),
+  marginLeft: responsiveWidth(10),
+  marginTop: responsiveHeight(6)
+},
+  btntext: {
+    flex: 1,
+    fontSize: responsiveFontSize(2),
+    textAlign: 'center',
+    marginTop: responsiveHeight(2),
+    color: 'white',
+    fontWeight: 'bold'
+  },
+  flogo: {
+    marginLeft: responsiveWidth(4),
+    marginTop: responsiveHeight(2.4),
+    marginRight: responsiveWidth(3),
+  },
+  llogo: {
+    marginLeft: responsiveWidth(4),
+    marginTop: responsiveHeight(2.4),
+    marginRight: responsiveWidth(3),
+  },
+  elogo: {
+
+    marginLeft: responsiveWidth(4),
+    marginTop: responsiveHeight(2.4),
+    marginRight: responsiveWidth(3),
+  },
+  plogo: {
+
+    marginLeft: responsiveWidth(4),
+    marginTop: responsiveHeight(2.4),
+    marginRight: responsiveWidth(3),
+  },
+
+  loginlink: {
+    flexDirection: 'row',
+    marginLeft: responsiveWidth(25),
+    marginTop: responsiveHeight(3)
+  },
+  checkb: {
+    flexDirection: 'row',
+    marginLeft: responsiveWidth(7),
+    marginTop: responsiveHeight(2)
+  },
+  checktext: {
+    fontSize: responsiveFontSize(1.4),
+    color: 'grey',
+    marginTop: responsiveHeight(1.8),
+    marginLeft: responsiveWidth(1),
+    marginRight: responsiveWidth(20),
+    fontFamily: 'poppins'
+  },
+  error: {
+    color: 'red',
+    textAlign: 'center',
+    margintop: responsiveHeight(5)
+  },
+})
