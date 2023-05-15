@@ -7,10 +7,12 @@ import SelectPre from './components/SelectPre';
 import Lectures from './components/Lectures';
 import DropdownPage from './components/DropdownPage';
 import CompleteReg from './components/CompleteReg';
+import AboutPage from './components/AboutPage';
 
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AboutPage from './components/AboutPage';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -18,6 +20,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
 
+      <Stack.Screen name="AboutPage" component={AboutPage} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Registration" component={Registration} />
         <Stack.Screen name="CompleteReg" component={CompleteReg} />
