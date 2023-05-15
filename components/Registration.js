@@ -7,13 +7,19 @@ import {
 } from "react-native-responsive-dimensions";
 import CheckBox from '@react-native-community/checkbox';
 import SelectGender from './SelectGender';
-// import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
+import { create } from 'react-test-renderer';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Registration(props) {
-  const [firstname, setFirstName] = useState('');
-  const [firstnameError, setFirstNameError] = useState('');
-  const [lastname, setLastName] = useState('');
-  const [lastnameError, setLastNameError] = useState('');
+  const navigation = useNavigation();
+
+ 
+  // const [firstname, setFirstName] = useState('');
+  // const [firstnameError, setFirstNameError] = useState('');
+  // const [lastname, setLastName] = useState('');
+  // const [lastnameError, setLastNameError] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [pass, setPass] = useState('');
@@ -22,23 +28,46 @@ export default function Registration(props) {
   const [selected, setSelection] = useState(false);
 
 
-  const handleFirstNameChange = text => {
-    if (text.length < 3) {
-      setFirstNameError('Name must be at least 3 characters');
-    } else {
-      setFirstNameError('');
+  const createUser = () => {
+    auth()
+    .createUserWithEmailAndPassword(email, pass)
+    .then(() => {
+    alert('User account created & signed in');
+  
+  })
+  .catch(error => {
+    if(error.code ==='auth/email-already-in-use'){
+      alert('Already Used Email');
     }
-    setFirstName(text);
-  };
+    if(error.code ==='auth/invalid-email'){
+      alert('email is invalid');
+    }
+    alert.error(error);
+    });
+  }
+  
+const NextScreen = () => {
+  navigation.navigate('CompleteReg');
+}
 
-  const handleLastNameChange = text => {
-    if (text.length < 3) {
-      setLastNameError('Name must be at least 3 characters');
-    } else {
-      setLastNameError('');
-    }
-    setLastName(text);
-  };
+
+  // const handleFirstNameChange = text => {
+  //   if (text.length < 3) {
+  //     setFirstNameError('Name must be at least 3 characters');
+  //   } else {
+  //     setFirstNameError('');
+  //   }
+  //   setFirstName(text);
+  // };
+
+  // const handleLastNameChange = text => {
+  //   if (text.length < 3) {
+  //     setLastNameError('Name must be at least 3 characters');
+  //   } else {
+  //     setLastNameError('');
+  //   }
+  //   setLastName(text);
+  // };
 
   const handleEmailChange = text => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,7 +81,7 @@ export default function Registration(props) {
 
   const handlePassChange = text => {
     const passtrim = pass.trim()
-    const passRegex = /^(?!\s)(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!passRegex.test(text)) {
       setPassError('Weak Password');
     } else {
@@ -65,15 +94,6 @@ export default function Registration(props) {
     setIsChecked(!isChecked);
   };
 
-  const isRegisterButtonDisabled =
-    !firstname ||
-    !lastname ||
-    !email ||
-    !pass ||
-    firstnameError ||
-    lastnameError ||
-    emailError ||
-    passError;
   return (
 
     <View>
@@ -85,26 +105,26 @@ export default function Registration(props) {
           <Image style={styles.flogo} source={require('../assets/Profile.png')} />
           <TextInput
             placeholder="First Name" placeholderTextColor={'grey'} color='black'
-            value={firstname}
-            onChangeText={handleFirstNameChange}
+            // value={firstname}
+            // onChangeText={handleFirstNameChange}
           />
         </View>
-        {firstnameError ? (
+        {/* {firstnameError ? (
           <Text style={styles.error}>{firstnameError}</Text>
-        ) : null}
+        ) : null} */}
 
         <View style={styles.lname}>
           <Image style={styles.llogo} source={require('../assets/Profile.png')} />
           <TextInput
             placeholder="Last Name" placeholderTextColor={'grey'} color='black'
-            value={lastname}
-            onChangeText={handleLastNameChange}
+            // value={lastname}
+            // onChangeText={handleLastNameChange}
           />
 
         </View>
-        {lastnameError ? (
+        {/* {lastnameError ? (
           <Text style={styles.error}>{lastnameError}</Text>
-        ) : null}
+        ) : null} */}
 
         <View style={styles.email}>
           <Image style={styles.elogo} source={require('../assets/Message.png')} />
@@ -156,9 +176,10 @@ export default function Registration(props) {
       </View>
 
       <TouchableOpacity
-        style={[styles.mybtn, isRegisterButtonDisabled && styles.disabledButton]}
-        onPress={() => props.navigation.navigate('SelectPre')}
-        disabled={isRegisterButtonDisabled}
+        style={[styles.mybtn]}
+  
+        onPress={() => { [createUser(), NextScreen()];
+        }}
       >
         <Text style={styles.btntext}>Register</Text>
       </TouchableOpacity>
@@ -168,13 +189,6 @@ export default function Registration(props) {
 
       }} */}
 
-      {/* <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: responsiveHeight(2) }}>
-        <View style={{ flex: 1, height: responsiveHeight(0.1), backgroundColor: 'grey' }} />
-        <View>
-          <Text style={{ marginLeft: responsiveWidth(5), marginRight: responsiveWidth(5), textAlign: 'center', fontSize: responsiveFontSize(2) }}>or</Text>
-        </View>
-        <View style={{ flex: 1, height: responsiveHeight(0.1), backgroundColor: 'grey' }} />
-      </View> */}
       <View style={styles.loginlink}>
         <Text>Already have an account?</Text>
         <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>

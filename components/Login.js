@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import {
   responsiveHeight,
@@ -6,8 +6,65 @@ import {
   responsiveFontSize
 } from "react-native-responsive-dimensions";
 import CheckBox from '@react-native-community/checkbox';
+import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
+
 
 export default function Login(props) {
+  const navigation = useNavigation();
+
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [pass, setPass] = useState('');
+  const [passError, setPassError] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+  const [selected, setSelection] = useState(false);
+
+  const signIn = () => {
+    auth()
+      .signInWithEmailAndPassword(email, pass)
+      .then(() => {
+        alert('You Logged in');
+      })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+     alert('That email address is already in use!');
+    }
+    if (error.code === 'auth/invalid-email') {
+      alert('That email address is invalid!');
+    }
+    alert.error(error);
+  });
+}
+
+const NextScreen = () => {
+  navigation.navigate('CompleteReg');
+}
+
+ 
+
+  const handleEmailChange = text => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(text)) {
+      setEmailError('Invalid email address');
+    } else {
+      setEmailError('');
+    }
+    setEmail(text);
+  };
+  const handlePassChange = text => {
+    const passtrim = pass.trim()
+      const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    if (!passRegex.test(text)) {
+      setPassError('Password must contain Character & Special Character or Number');
+    } else {
+      setPassError('');
+    }
+    setPass(text);
+  };
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
   return (
 
     <View>
@@ -21,6 +78,10 @@ export default function Login(props) {
 <Image style={styles.elogo} source={require('../assets/Message.png')} />
 <TextInput
   placeholder="Email" placeholderTextColor={'grey'} color='black'
+  value={email}
+  onChangeText={handleEmailChange}
+  keyboardType="email-address"
+  autoCapitalize="none"
 />
 </View>
 
@@ -28,24 +89,27 @@ export default function Login(props) {
 
 <Image style={styles.plogo} source={require('../assets/Lock.png')} />
 <TextInput
-  placeholder="Password" placeholderTextColor={'grey'} color='black'/>
+  placeholder="Password" placeholderTextColor={'grey'} color='black'
+  value={pass}
+  onChangeText={handlePassChange}/>
 
 </View>
 
 <View style={styles.checkb}>
 
 <CheckBox style={{ marginLeft: responsiveWidth(5), marginTop: responsiveHeight(1), borderColor: 'grey' }}
-//   value={selected}
-//   onPress={handleCheckboxChange}
-//   onValueChange={setSelection}
-//   tintColors={{ true: '#2530A3', false: 'grey' }}
+  value={selected}
+  onPress={handleCheckboxChange}
+  onValueChange={setSelection}
+  tintColors={{ true: '#2530A3', false: 'grey' }}
 />
 <Text style={styles.checktext} >Remember Me </Text>
 </View>
-{/* {isChecked ? <Text style={styles.checkmark}>✓</Text> : null} */}
+{isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
 
 <TouchableOpacity style={styles.mybtn}
-        onPress={() => props.navigation.navigate('CompleteRegistration')}
+// onPress={() => { signIn(); }}
+        onPress={() => { [signIn(), NextScreen()]; }} 
       >
         <Text style={styles.btntext}>Login</Text>
       </TouchableOpacity>
@@ -59,7 +123,7 @@ export default function Login(props) {
 </View>
 
   )
-}
+  };
 
 const styles = StyleSheet.create({
   logo: {
