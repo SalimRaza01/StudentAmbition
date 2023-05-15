@@ -84,6 +84,8 @@ const NextScreen = () => {
   autoCapitalize="none"
 />
 </View>
+{emailError ? <Text style={styles.error}>{emailError}</Text> : null}
+
 
 <View style={styles.pass}>
 
@@ -94,6 +96,7 @@ const NextScreen = () => {
   onChangeText={handlePassChange}/>
 
 </View>
+{passError ? <Text style={styles.error}>{passError}</Text> : null}
 
 <View style={styles.checkb}>
 

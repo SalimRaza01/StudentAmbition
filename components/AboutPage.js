@@ -1,87 +1,154 @@
 import React from "react";
-import { Text, View,  Image, StyleSheet } from 'react-native';
+import { Text, View,  Image, StyleSheet, TouchableOpacity } from 'react-native';
 import {
     responsiveHeight,
     responsiveWidth,
     responsiveFontSize
 } from "react-native-responsive-dimensions";
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function AboutPage() {
     return (
         <View>
 
-            <Text style={styles.subtitle5}>
-               Activity Tracker
+            <Text style={styles.subtitle1}>
+               About Us
             </Text>
+            <Text style={styles.para2}>Student Ambition is an Android Application that generally helps students to get information about right course, knowledge and placement related guidance. </Text>
             
-            <View style={styles.container1}>
+
+            <Text style={styles.subtitle3}>
+               Developer's :
+            </Text>
+
+            <TouchableOpacity style={styles.container1}>
+            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
                 <Image style={styles.wpic} source={require('../assets/tick.png')} />
-                <Image style={styles.wbtn} source={require('../assets/tick.png')} />
-                <Text style={styles.subtitle1}>
-                    Drinking 300ml Water
+                <Text style={styles.subtitle2}>
+                    Salim Raza
                 </Text>
 
-                <Text style={styles.para1}>About 3 minutes ago
+                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
                 </Text>
-            </View>
+                </LinearGradient>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.container1}>
+            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
+                <Image style={styles.wpic} source={require('../assets/tick.png')} />
+                <Text style={styles.subtitle2}>
+                    Abhishek Gupta
+                </Text>
+
+                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
+                </Text>
+                </LinearGradient>
+                </TouchableOpacity>
+
+            <TouchableOpacity style={styles.container1}>
+            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
+                <Image style={styles.wpic} source={require('../assets/tick.png')} />
+                <Text style={styles.subtitle2}>
+                    Anshika Chaudhary
+                </Text>
+
+                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
+                </Text>
+                </LinearGradient>
+                </TouchableOpacity>
+
+            <TouchableOpacity style={styles.container1}>
+            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
+                <Image style={styles.wpic} source={require('../assets/tick.png')} />
+                <Text style={styles.subtitle2}>
+                    Satyendra Kumar
+               </Text>
+                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
+                </Text>
+                </LinearGradient>
+                </TouchableOpacity>
+          
+                <Text style={styles.para3}>Version 1.0.0
+                </Text>
+
 
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    subtitle5: {
-        position: 'absolute',
+    subtitle1: {
+         
         fontSize: responsiveFontSize(3),
         fontWeight: 'bold',
-        color: 'black',
-        textAlign: 'center',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: responsiveHeight(3),
-        marginLeft: responsiveWidth(28),
+        color: '#3b5995',
+        marginTop: responsiveHeight(9),
+        marginLeft: responsiveWidth(10),
     },
+    subtitle3: {
+         
+        fontSize: responsiveFontSize(2.4),
+        fontWeight: 'bold',
+        color: '#3b5995',
+        marginTop: responsiveHeight(6),
+        marginLeft: responsiveWidth(10),
+    },
+    linearGradient: {
+        flex: 1,
+        borderRadius: 15
+      },
     container1: {
         // position: 'absolute',
         marginTop: responsiveHeight(2.5),
         marginLeft: responsiveWidth(7),
         width: responsiveWidth(86),
         height: responsiveHeight(10),
-        backgroundColor: 'white',
         borderRadius: 10,
         justifyContent: "center",
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 1
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 100,
+        shadowRadius: 10,
+        elevation: 7
     },
     wpic: {
         position: 'absolute',
         height: responsiveHeight(6.3),
         width: responsiveWidth(12),
-        marginLeft: responsiveWidth(2.2),
-        marginTop: responsiveHeight(12),
+        marginLeft: responsiveWidth(5),
+        marginTop: responsiveHeight(1.5),
 
-    },
-    wbtn: {
-        position: 'absolute',
-        marginLeft: responsiveWidth(76),
-        marginTop: responsiveHeight(1),
     },
     para1: {
         // position: 'absolute',
-        fontSize: responsiveFontSize(1.2),
-        color: 'grey',
-        marginLeft: responsiveWidth(17.4),
-        marginTop: responsiveHeight(0.5)
+        fontSize: responsiveFontSize(1.3),
+        color: 'white',
+        marginLeft: responsiveWidth(20),
+        marginTop: responsiveHeight(0.4)
     },
-    subtitle1: {
+    para2: {
         // position: 'absolute',
         fontSize: responsiveFontSize(1.3),
-        color: 'black',
-        marginLeft: responsiveWidth(17.4),
-        marginTop: responsiveHeight(0.1),
+        color: 'grey',
+        textAlign:'justify',
+        marginLeft: responsiveWidth(10),
+        marginRight: responsiveWidth(9),
+        marginTop: responsiveHeight(2)
+    },
+    para3: {
+        // position: 'absolute',
+        fontSize: responsiveFontSize(1.3),
+        color: 'grey',
+        justifyContent:'center',
+        textAlign:'center',
+        marginTop: responsiveHeight(12)
+    },
+    subtitle2: {
+        // position: 'absolute',
+        fontSize: responsiveFontSize(1.8),
+        color: 'white',
+        marginLeft: responsiveWidth(20),
+        marginTop: responsiveHeight(2),
         fontFamily: 'poppins',
         fontWeight: 'bold'
     },
