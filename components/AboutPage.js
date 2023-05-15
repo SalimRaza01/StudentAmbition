@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, View,  Image, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useRef, useEffect } from "react";
+import { Text, View,  Image, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import {
     responsiveHeight,
     responsiveWidth,
@@ -8,6 +8,20 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function AboutPage() {
+
+    const slideAnim = useRef(new Animated.Value(-100)).current;
+
+    useEffect(() => {
+        Animated.stagger(300, [
+            Animated.timing(slideAnim, {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true
+            }),
+        ]).start();
+    }, [slideAnim]);
+
+
     return (
         <View>
 
@@ -21,6 +35,7 @@ export default function AboutPage() {
                Developer's :
             </Text>
 
+            <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
                 <Image style={styles.wpic} source={require('../assets/tick.png')} />
@@ -32,7 +47,9 @@ export default function AboutPage() {
                 </Text>
                 </LinearGradient>
             </TouchableOpacity>
+            </Animated.View>
 
+            <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
                 <Image style={styles.wpic} source={require('../assets/tick.png')} />
@@ -44,7 +61,9 @@ export default function AboutPage() {
                 </Text>
                 </LinearGradient>
                 </TouchableOpacity>
+                </Animated.View>
 
+                <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
                 <Image style={styles.wpic} source={require('../assets/tick.png')} />
@@ -56,7 +75,9 @@ export default function AboutPage() {
                 </Text>
                 </LinearGradient>
                 </TouchableOpacity>
+                </Animated.View>
 
+                <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
                 <Image style={styles.wpic} source={require('../assets/tick.png')} />
@@ -67,11 +88,10 @@ export default function AboutPage() {
                 </Text>
                 </LinearGradient>
                 </TouchableOpacity>
+                </Animated.View>
           
                 <Text style={styles.para3}>Version 1.0.0
                 </Text>
-
-
         </View>
     );
 };
