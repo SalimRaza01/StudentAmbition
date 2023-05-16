@@ -38,7 +38,7 @@ export default function AboutPage() {
             <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/tick.png')} />
+                <Image style={styles.wpic} source={require('../assets/member1.png')} />
                 <Text style={styles.subtitle2}>
                     Salim Raza
                 </Text>
@@ -52,7 +52,7 @@ export default function AboutPage() {
             <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/tick.png')} />
+                <Image style={styles.wpic} source={require('../assets/member2.png')} />
                 <Text style={styles.subtitle2}>
                     Abhishek Gupta
                 </Text>
@@ -66,7 +66,7 @@ export default function AboutPage() {
                 <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/tick.png')} />
+                <Image style={styles.wpic} source={require('../assets/member3.png')} />
                 <Text style={styles.subtitle2}>
                     Anshika Chaudhary
                 </Text>
@@ -80,7 +80,7 @@ export default function AboutPage() {
                 <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
             <TouchableOpacity style={styles.container1}>
             <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/tick.png')} />
+                <Image style={styles.wpic} source={require('../assets/member4.png')} />
                 <Text style={styles.subtitle2}>
                     Satyendra Kumar
                </Text>
