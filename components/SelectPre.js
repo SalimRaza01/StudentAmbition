@@ -18,13 +18,13 @@ export default function SelectPre(props) {
   return (
 
     <View>
-        <Text style={styles.para1}>
-          Select Preference
-        </Text>
+      <Text style={styles.para1}>
+        Select Preference
+      </Text>
       <SelectCourse></SelectCourse>
       <SelectYear></SelectYear>
-     <SelectBranch></SelectBranch>
-     <SelectOption></SelectOption>
+      <SelectBranch></SelectBranch>
+      <SelectOption></SelectOption>
 
       <TouchableOpacity style={styles.mybtn}
         onPress={() => props.navigation.navigate('SplashScreen')}
@@ -65,5 +65,5 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold'
   },
- 
+
 })

@@ -36,7 +36,7 @@ export default function Lectures(props) {
                 Select Preference
             </Text>
             <View style={styles.weight}>
-            <Image style={styles.wlogo} source={require('../assets/branch.png')} />
+                <Image style={styles.wlogo} source={require('../assets/branch.png')} />
                 <Picker
                     selectedValue={selectedValue1}
                     onValueChange={(itemValue) => setSelectedValue1(itemValue)} style={styles.picker}
@@ -47,7 +47,7 @@ export default function Lectures(props) {
                 </Picker>
             </View>
             <View style={styles.weight}>
-            <Image style={styles.wlogo} source={require('../assets/branch.png')} />
+                <Image style={styles.wlogo} source={require('../assets/branch.png')} />
                 <Picker
                     selectedValue={selectedValue2}
                     onValueChange={(itemValue) => setSelectedValue2(itemValue)} style={styles.picker}
@@ -71,11 +71,11 @@ export default function Lectures(props) {
 const styles = StyleSheet.create({
     wlogo: {
         position: 'absolute',
-        width:responsiveWidth(4.5),
+        width: responsiveWidth(4.5),
         height: responsiveHeight(2.6),
         marginLeft: responsiveWidth(4),
         marginTop: responsiveHeight(2),
-      },
+    },
 
     para1: {
 

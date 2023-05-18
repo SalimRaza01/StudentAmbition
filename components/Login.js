@@ -26,22 +26,22 @@ export default function Login(props) {
       .then(() => {
         alert('You Logged in');
       })
-  .catch(error => {
-    if (error.code === 'auth/email-already-in-use') {
-     alert('That email address is already in use!');
-    }
-    if (error.code === 'auth/invalid-email') {
-      alert('That email address is invalid!');
-    }
-    alert.error(error);
-  });
-}
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          alert('That email address is already in use!');
+        }
+        if (error.code === 'auth/invalid-email') {
+          alert('That email address is invalid!');
+        }
+        alert.error(error);
+      });
+  }
 
-const NextScreen = () => {
-  navigation.navigate('CompleteReg');
-}
+  const NextScreen = () => {
+    navigation.navigate('CompleteReg');
+  }
 
- 
+
 
   const handleEmailChange = text => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -54,7 +54,7 @@ const NextScreen = () => {
   };
   const handlePassChange = text => {
     const passtrim = pass.trim()
-      const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!passRegex.test(text)) {
       setPassError('Password must contain Character & Special Character or Number');
     } else {
@@ -69,64 +69,64 @@ const NextScreen = () => {
 
     <View>
 
-    <Image style={styles.logo} source={require('../assets/Logo.png')} />
+      <Image style={styles.logo} source={require('../assets/Logo.png')} />
 
-           <Text style={styles.para1}> Login </Text>
-
-  
-<View style={styles.email}>
-<Image style={styles.elogo} source={require('../assets/Message.png')} />
-<TextInput
-  placeholder="Email" placeholderTextColor={'grey'} color='black'
-  value={email}
-  onChangeText={handleEmailChange}
-  keyboardType="email-address"
-  autoCapitalize="none"
-/>
-</View>
-{emailError ? <Text style={styles.error}>{emailError}</Text> : null}
+      <Text style={styles.para1}> Login </Text>
 
 
-<View style={styles.pass}>
+      <View style={styles.email}>
+        <Image style={styles.elogo} source={require('../assets/Message.png')} />
+        <TextInput
+          placeholder="Email" placeholderTextColor={'grey'} color='black'
+          value={email}
+          onChangeText={handleEmailChange}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
+      </View>
+      {emailError ? <Text style={styles.error}>{emailError}</Text> : null}
 
-<Image style={styles.plogo} source={require('../assets/Lock.png')} />
-<TextInput
-  placeholder="Password" placeholderTextColor={'grey'} color='black'
-  value={pass}
-  onChangeText={handlePassChange}/>
 
-</View>
-{passError ? <Text style={styles.error}>{passError}</Text> : null}
+      <View style={styles.pass}>
 
-<View style={styles.checkb}>
+        <Image style={styles.plogo} source={require('../assets/Lock.png')} />
+        <TextInput
+          placeholder="Password" placeholderTextColor={'grey'} color='black'
+          value={pass}
+          onChangeText={handlePassChange} />
 
-<CheckBox style={{ marginLeft: responsiveWidth(5), marginTop: responsiveHeight(1), borderColor: 'grey' }}
-  value={selected}
-  onPress={handleCheckboxChange}
-  onValueChange={setSelection}
-  tintColors={{ true: '#2530A3', false: 'grey' }}
-/>
-<Text style={styles.checktext} >Remember Me </Text>
-</View>
-{isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
+      </View>
+      {passError ? <Text style={styles.error}>{passError}</Text> : null}
 
-<TouchableOpacity style={styles.mybtn}
-// onPress={() => { signIn(); }}
-        onPress={() => { [signIn(), NextScreen()]; }} 
+      <View style={styles.checkb}>
+
+        <CheckBox style={{ marginLeft: responsiveWidth(5), marginTop: responsiveHeight(1), borderColor: 'grey' }}
+          value={selected}
+          onPress={handleCheckboxChange}
+          onValueChange={setSelection}
+          tintColors={{ true: '#2530A3', false: 'grey' }}
+        />
+        <Text style={styles.checktext} >Remember Me </Text>
+      </View>
+      {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
+
+      <TouchableOpacity style={styles.mybtn}
+        // onPress={() => { signIn(); }}
+        onPress={() => { [signIn(), NextScreen()]; }}
       >
         <Text style={styles.btntext}>Login</Text>
       </TouchableOpacity>
 
-<View style={styles.loginlink}>
+      <View style={styles.loginlink}>
         <Text>Don't have account ?</Text>
         <TouchableOpacity onPress={() => props.navigation.navigate('Registration')}>
           <Text style={{ color: '#C58BF2' }}> Create New </Text>
         </TouchableOpacity>
       </View>
-</View>
+    </View>
 
   )
-  };
+};
 
 const styles = StyleSheet.create({
   logo: {
@@ -135,64 +135,64 @@ const styles = StyleSheet.create({
     height: responsiveHeight(20),
     // marginLeft: responsiveWidth(15),
     marginTop: responsiveHeight(15),
-    alignSelf:'center',
-    },  
-    para1: {
+    alignSelf: 'center',
+  },
+  para1: {
 
-        fontSize: responsiveFontSize(4),
-        fontWeight: 'bold',
-        color: '#5A61C9',
-        marginLeft: responsiveWidth(12),
-        marginTop: responsiveHeight(38)
-    
-      },
-    email: {
-        
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        borderRadius: 25,
-        borderWidth: 1,
-        width: responsiveWidth(80),
-        height: responsiveHeight(7),
-        marginLeft: responsiveWidth(10),
-        marginTop: responsiveHeight(3)
-      },
-      pass: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        borderRadius: 25,
-        borderWidth: 1,
-        width: responsiveWidth(80),
-        height: responsiveHeight(7),
-        marginLeft: responsiveWidth(10),
-        marginTop: responsiveHeight(2)
-      },
-      elogo: {
+    fontSize: responsiveFontSize(4),
+    fontWeight: 'bold',
+    color: '#5A61C9',
+    marginLeft: responsiveWidth(12),
+    marginTop: responsiveHeight(38)
 
-        marginLeft: responsiveWidth(4),
-        marginTop: responsiveHeight(2.4),
-        marginRight: responsiveWidth(3),
-      },
-      plogo: {
-    
-        marginLeft: responsiveWidth(4),
-        marginTop: responsiveHeight(2.4),
-        marginRight: responsiveWidth(3),
-      },
-      checkb: {
-        flexDirection: 'row',
-        marginLeft: responsiveWidth(7),
-        marginTop: responsiveHeight(1.5)
-      },
-      checktext: {
-        fontSize: responsiveFontSize(1.4),
-        color: 'grey',
-        marginTop: responsiveHeight(2),
-        marginLeft: responsiveWidth(1),
-        marginRight: responsiveWidth(20),
-        fontFamily: 'poppins'
-      },
-      
+  },
+  email: {
+
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderRadius: 25,
+    borderWidth: 1,
+    width: responsiveWidth(80),
+    height: responsiveHeight(7),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(3)
+  },
+  pass: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    borderRadius: 25,
+    borderWidth: 1,
+    width: responsiveWidth(80),
+    height: responsiveHeight(7),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(2)
+  },
+  elogo: {
+
+    marginLeft: responsiveWidth(4),
+    marginTop: responsiveHeight(2.4),
+    marginRight: responsiveWidth(3),
+  },
+  plogo: {
+
+    marginLeft: responsiveWidth(4),
+    marginTop: responsiveHeight(2.4),
+    marginRight: responsiveWidth(3),
+  },
+  checkb: {
+    flexDirection: 'row',
+    marginLeft: responsiveWidth(7),
+    marginTop: responsiveHeight(1.5)
+  },
+  checktext: {
+    fontSize: responsiveFontSize(1.4),
+    color: 'grey',
+    marginTop: responsiveHeight(2),
+    marginLeft: responsiveWidth(1),
+    marginRight: responsiveWidth(20),
+    fontFamily: 'poppins'
+  },
+
   loginlink: {
     flexDirection: 'row',
     marginLeft: responsiveWidth(25),
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 
-}); 
+});
 
 
 

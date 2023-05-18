@@ -16,19 +16,19 @@ export default function SelectYear(props) {
 
   return (
     <View style={styles.weight}>
-        <Image style={styles.wlogo} source={require('../assets/year.png')} />
-        <Picker 
-          selectedValue={gender}
-          onValueChange={(value, index) => setGender(value)}
-          mode="picker"
-          style={styles.picker}
-        >
-          <Picker.Item label="       Select Year" value="Unknown" />
-          <Picker.Item label="       1st Year" value="1st Year" />
-          <Picker.Item label="       2nd Year" value="2nd Year" />
-          <Picker.Item label="       3rd Year" value="3rd Year" />
-          <Picker.Item label="       4th Year" value="4th Year" />
-          </Picker>
+      <Image style={styles.wlogo} source={require('../assets/year.png')} />
+      <Picker
+        selectedValue={gender}
+        onValueChange={(value, index) => setGender(value)}
+        mode="picker"
+        style={styles.picker}
+      >
+        <Picker.Item label="       Select Year" value="Unknown" />
+        <Picker.Item label="       1st Year" value="1st Year" />
+        <Picker.Item label="       2nd Year" value="2nd Year" />
+        <Picker.Item label="       3rd Year" value="3rd Year" />
+        <Picker.Item label="       4th Year" value="4th Year" />
+      </Picker>
     </View>
   );
 }
@@ -36,7 +36,7 @@ export default function SelectYear(props) {
 const styles = StyleSheet.create({
 
   text: {
-    fontSize:responsiveFontSize(1),
+    fontSize: responsiveFontSize(1),
     color: 'grey',
     textAlign: 'center'
   },
@@ -58,13 +58,13 @@ const styles = StyleSheet.create({
     height: responsiveHeight(7.8),
     fontSize: responsiveFontSize(1),
     marginTop: responsiveHeight(-0.9)
-  
+
     // backgroundColor: 'green'
   },
 
   wlogo: {
     position: 'absolute',
-    width:responsiveWidth(4.5),
+    width: responsiveWidth(4.5),
     height: responsiveHeight(2.6),
     marginLeft: responsiveWidth(4),
     marginTop: responsiveHeight(2),

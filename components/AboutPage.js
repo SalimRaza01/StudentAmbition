@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { Text, View,  Image, StyleSheet, TouchableOpacity, Animated } from 'react-native';
+import { Text, View, Image, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import {
     responsiveHeight,
     responsiveWidth,
@@ -26,79 +26,79 @@ export default function AboutPage() {
         <View>
 
             <Text style={styles.subtitle1}>
-               About Us
+                About Us
             </Text>
             <Text style={styles.para2}>Student Ambition is an Android Application that generally helps students to get information about right course, knowledge and placement related guidance. </Text>
-            
+
 
             <Text style={styles.subtitle3}>
-               Developer's :
+                Developer's :
             </Text>
 
             <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
-            <TouchableOpacity style={styles.container1}>
-            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/member1.png')} />
-                <Text style={styles.subtitle2}>
-                    Salim Raza
-                </Text>
+                <TouchableOpacity style={styles.container1}>
+                    <LinearGradient start={{ x: 0, y: 1 }} end={{ x: 1, y: 1 }} colors={['#848AF2', '#3b5998',]} style={styles.linearGradient}>
+                        <Image style={styles.wpic} source={require('../assets/member1.png')} />
+                        <Text style={styles.subtitle2}>
+                            Salim Raza
+                        </Text>
 
-                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
-                </Text>
-                </LinearGradient>
-            </TouchableOpacity>
+                        <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
+                        </Text>
+                    </LinearGradient>
+                </TouchableOpacity>
             </Animated.View>
 
             <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
-            <TouchableOpacity style={styles.container1}>
-            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/member2.png')} />
-                <Text style={styles.subtitle2}>
-                    Abhishek Gupta
-                </Text>
+                <TouchableOpacity style={styles.container1}>
+                    <LinearGradient start={{ x: 0, y: 1 }} end={{ x: 1, y: 1 }} colors={['#848AF2', '#3b5998',]} style={styles.linearGradient}>
+                        <Image style={styles.wpic} source={require('../assets/member2.png')} />
+                        <Text style={styles.subtitle2}>
+                            Abhishek Gupta
+                        </Text>
 
-                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
-                </Text>
-                </LinearGradient>
+                        <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
+                        </Text>
+                    </LinearGradient>
                 </TouchableOpacity>
-                </Animated.View>
+            </Animated.View>
 
-                <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
-            <TouchableOpacity style={styles.container1}>
-            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/member3.png')} />
-                <Text style={styles.subtitle2}>
-                    Anshika Chaudhary
-                </Text>
+            <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
+                <TouchableOpacity style={styles.container1}>
+                    <LinearGradient start={{ x: 0, y: 1 }} end={{ x: 1, y: 1 }} colors={['#848AF2', '#3b5998',]} style={styles.linearGradient}>
+                        <Image style={styles.wpic} source={require('../assets/member3.png')} />
+                        <Text style={styles.subtitle2}>
+                            Anshika Chaudhary
+                        </Text>
 
-                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
-                </Text>
-                </LinearGradient>
+                        <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
+                        </Text>
+                    </LinearGradient>
                 </TouchableOpacity>
-                </Animated.View>
+            </Animated.View>
 
-                <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
-            <TouchableOpacity style={styles.container1}>
-            <LinearGradient start={{x: 0, y: 1}} end={{x: 1, y: 1}} colors={['#848AF2', '#3b5998',] } style={styles.linearGradient}>
-                <Image style={styles.wpic} source={require('../assets/member4.png')} />
-                <Text style={styles.subtitle2}>
-                    Satyendra Kumar
-               </Text>
-                <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
-                </Text>
-                </LinearGradient>
+            <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
+                <TouchableOpacity style={styles.container1}>
+                    <LinearGradient start={{ x: 0, y: 1 }} end={{ x: 1, y: 1 }} colors={['#848AF2', '#3b5998',]} style={styles.linearGradient}>
+                        <Image style={styles.wpic} source={require('../assets/member4.png')} />
+                        <Text style={styles.subtitle2}>
+                            Satyendra Kumar
+                        </Text>
+                        <Text style={styles.para1}>B-Tech ( Computer Science Engineering )
+                        </Text>
+                    </LinearGradient>
                 </TouchableOpacity>
-                </Animated.View>
-          
-                <Text style={styles.para3}>Version 1.0.0
-                </Text>
+            </Animated.View>
+
+            <Text style={styles.para3}>Version 1.0.0
+            </Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     subtitle1: {
-         
+
         fontSize: responsiveFontSize(3),
         fontWeight: 'bold',
         color: '#3b5995',
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         marginLeft: responsiveWidth(10),
     },
     subtitle3: {
-         
+
         fontSize: responsiveFontSize(2.4),
         fontWeight: 'bold',
         color: '#3b5995',
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     linearGradient: {
         flex: 1,
         borderRadius: 15
-      },
+    },
     container1: {
         // position: 'absolute',
         marginTop: responsiveHeight(2.5),
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
         // position: 'absolute',
         fontSize: responsiveFontSize(1.3),
         color: 'grey',
-        textAlign:'justify',
+        textAlign: 'justify',
         marginLeft: responsiveWidth(10),
         marginRight: responsiveWidth(9),
         marginTop: responsiveHeight(2)
@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
         // position: 'absolute',
         fontSize: responsiveFontSize(1.3),
         color: 'grey',
-        justifyContent:'center',
-        textAlign:'center',
+        justifyContent: 'center',
+        textAlign: 'center',
         marginTop: responsiveHeight(12)
     },
     subtitle2: {

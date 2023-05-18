@@ -58,8 +58,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(4),
     fontWeight: 'bold',
     color: '#5A61C9',
-    textAlign:'center',
-    
+    textAlign: 'center',
+
     marginTop: responsiveHeight(55)
 
   },

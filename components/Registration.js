@@ -15,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function Registration(props) {
   const navigation = useNavigation();
 
- 
+
   // const [firstname, setFirstName] = useState('');
   // const [firstnameError, setFirstNameError] = useState('');
   // const [lastname, setLastName] = useState('');
@@ -30,25 +30,25 @@ export default function Registration(props) {
 
   const createUser = () => {
     auth()
-    .createUserWithEmailAndPassword(email, pass)
-    .then(() => {
-    alert('User account created & signed in');
-  
-  })
-  .catch(error => {
-    if(error.code ==='auth/email-already-in-use'){
-      alert('Already Used Email');
-    }
-    if(error.code ==='auth/invalid-email'){
-      alert('email is invalid');
-    }
-    alert.error(error);
-    });
+      .createUserWithEmailAndPassword(email, pass)
+      .then(() => {
+        alert('User account created & signed in');
+
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          alert('Already Used Email');
+        }
+        if (error.code === 'auth/invalid-email') {
+          alert('email is invalid');
+        }
+        alert.error(error);
+      });
   }
-  
-const NextScreen = () => {
-  navigation.navigate('CompleteReg');
-}
+
+  const NextScreen = () => {
+    navigation.navigate('CompleteReg');
+  }
 
 
   // const handleFirstNameChange = text => {
@@ -105,8 +105,8 @@ const NextScreen = () => {
           <Image style={styles.flogo} source={require('../assets/Profile.png')} />
           <TextInput
             placeholder="First Name" placeholderTextColor={'grey'} color='black'
-            // value={firstname}
-            // onChangeText={handleFirstNameChange}
+          // value={firstname}
+          // onChangeText={handleFirstNameChange}
           />
         </View>
         {/* {firstnameError ? (
@@ -117,8 +117,8 @@ const NextScreen = () => {
           <Image style={styles.llogo} source={require('../assets/Profile.png')} />
           <TextInput
             placeholder="Last Name" placeholderTextColor={'grey'} color='black'
-            // value={lastname}
-            // onChangeText={handleLastNameChange}
+          // value={lastname}
+          // onChangeText={handleLastNameChange}
           />
 
         </View>
@@ -157,7 +157,7 @@ const NextScreen = () => {
             placeholder="Confirm Password" placeholderTextColor={'grey'} color='black'
             value={pass}
             onChangeText={handlePassChange}
-      
+
           />
         </View>
         {passError ? <Text style={styles.error}>{passError}</Text> : null}
@@ -177,8 +177,9 @@ const NextScreen = () => {
 
       <TouchableOpacity
         style={[styles.mybtn]}
-  
-        onPress={() => { [createUser(), NextScreen()];
+
+        onPress={() => {
+          [createUser(), NextScreen()];
         }}
       >
         <Text style={styles.btntext}>Register</Text>
@@ -261,13 +262,13 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(6)
   },
   disabledButton: {
-  backgroundColor: 'grey',
-  borderRadius: 30,
-  width: responsiveWidth(80),
-  height: responsiveHeight(6.8),
-  marginLeft: responsiveWidth(10),
-  marginTop: responsiveHeight(6)
-},
+    backgroundColor: 'grey',
+    borderRadius: 30,
+    width: responsiveWidth(80),
+    height: responsiveHeight(6.8),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(6)
+  },
   btntext: {
     flex: 1,
     fontSize: responsiveFontSize(2),
