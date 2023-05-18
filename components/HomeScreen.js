@@ -75,9 +75,9 @@ export default function HomeScreen(props) {
         </LinearGradient>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('SplashScreen')}>
+      <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('AboutPage')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
-          <Text style={styles.btntext}>Coding Sets</Text>
+          <Text style={styles.btntext}>About Us</Text>
         </LinearGradient>
       </TouchableOpacity>
       

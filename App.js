@@ -20,15 +20,15 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
 
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="SelectPre" component={SelectPre} />
+        <Stack.Screen name="CompleteReg" component={CompleteReg} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="AboutPage" component={AboutPage} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Registration" component={Registration} />
-        <Stack.Screen name="CompleteReg" component={CompleteReg} />
-        <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Lectures" component={Lectures} />
         <Stack.Screen name="DropdownPage" component={DropdownPage} />
-        <Stack.Screen name="SelectPre" component={SelectPre} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -21,7 +21,7 @@ export default function CompleteReg({ navigation }) {
     // Delay for 2 seconds (adjust as needed)
     const delay = setTimeout(() => {
       navigation.navigate('SelectPre'); // Replace 'AnotherScreen' with your target screen name
-    }, 3500);
+    }, 3000);
 
     // Clear the timeout when the component unmounts
     return () => clearTimeout(delay);

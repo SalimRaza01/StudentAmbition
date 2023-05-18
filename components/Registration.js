@@ -32,8 +32,7 @@ export default function Registration(props) {
     auth()
       .createUserWithEmailAndPassword(email, pass)
       .then(() => {
-        alert('User account created & signed in');
-
+        // alert('User account created & signed in');
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {

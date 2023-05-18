@@ -27,7 +27,7 @@ export default function SelectPre(props) {
       <SelectOption></SelectOption>
 
       <TouchableOpacity style={styles.mybtn}
-        onPress={() => props.navigation.navigate('SplashScreen')}
+        onPress={() => props.navigation.navigate('HomeScreen')}
       >
         <Text style={styles.btntext}>Get Started</Text>
       </TouchableOpacity>
