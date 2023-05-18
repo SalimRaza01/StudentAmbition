@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -14,42 +14,74 @@ export default function HomeScreen(props) {
     <View >
 
       <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.header}>
-        <Text style={styles.header}>Student Ambition</Text>
- 
+        <Text style={styles.headertext}>Student Ambition</Text>
+
       </LinearGradient>
-      <ScrollView style={{ marginBottom: 100 }}>
-        <LinearGradient colors={['#848AF28C','#5A61C9FF']} style={styles.linearGradient}>
-          <TouchableOpacity 
-            onPress={() => props.navigation.navigate('SplashScreen')}>
-            <Text style={styles.btntext}>Scope</Text>
-          </TouchableOpacity>
-        </LinearGradient>
+
+      <TouchableOpacity style={styles.container} onPress={() => props.navigation.navigate('SplashScreen')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
-          <TouchableOpacity 
-            onPress={() => props.navigation.navigate('SelectPrefer')}>
-            <Text style={styles.btntext}>Notes</Text>
-          </TouchableOpacity>
+          <Text style={styles.btntext}>Scope</Text>
         </LinearGradient>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('SplashScreen')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
-          <TouchableOpacity 
-            onPress={() => props.navigation.navigate('SplashScreen')}>
-            <Text style={styles.btntext}>Practise Sets</Text>
-          </TouchableOpacity>
+          <Text style={styles.btntext}>Lecture's</Text>
         </LinearGradient>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.container} onPress={() => props.navigation.navigate('SplashScreen')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
-          <TouchableOpacity 
-            onPress={() => props.navigation.navigate('SplashScreen')}>
-            <Text style={styles.btntext}>Internships</Text>
-          </TouchableOpacity>
+          <Text style={styles.btntext}>Notes</Text>
         </LinearGradient>
-        
-        
-       
-        
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('SplashScreen')}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Question    Paper</Text>
+        </LinearGradient>
+      </TouchableOpacity>
 
 
-      </ScrollView>
-       
+      <TouchableOpacity style={styles.container} onPress={() => props.navigation.navigate('SplashScreen')}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Gain Skills</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('SplashScreen')}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Coding Language</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
+
+      <TouchableOpacity style={styles.container} onPress={() => props.navigation.navigate('SplashScreen')}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>DSA       Question</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('SplashScreen')}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Intership</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
+
+      <TouchableOpacity style={styles.container} onPress={() => props.navigation.navigate('SplashScreen')}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Additional Skills</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('SplashScreen')}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Coding Sets</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+      
+
     </View>
   )
 
@@ -59,35 +91,53 @@ export default function HomeScreen(props) {
 const styles = StyleSheet.create({
 
   header: {
-    textAlign: 'center',
     fontSize: responsiveFontSize(4),
-    marginBottom: responsiveHeight(6),
-    color: 'white',
-    paddingTop:responsiveHeight(1)
-
+    height: responsiveHeight(7),
+    marginBottom: responsiveHeight(6)
   },
-  
-  btntext: {
-  
-    fontSize: responsiveFontSize(4),
-    textAlign: 'center',
+
+  headertext: {
+    fontSize: responsiveFontSize(2.2),
     marginTop: responsiveHeight(2),
+    marginLeft: responsiveWidth(14),
+    color: 'white',
+    fontWeight: 'bold',
+  },
+
+  btntext: {
+    fontSize: responsiveFontSize(2),
+    textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
 
   },
   linearGradient: {
-    flex:1,
-    borderRadius: 30,
-    width: responsiveWidth(90),
-    height: responsiveHeight(15),
-    marginLeft: responsiveWidth(5),
-    marginTop: responsiveHeight(3),
-    borderBottomWidth:2,
-    borderEndColor:'black',
-    paddingTop:responsiveHeight(1)
+    flex: 1,
+    borderRadius: 15,
+    justifyContent: "center",
   },
-  
+  container: {
+    marginTop: responsiveHeight(3),
+    marginLeft: responsiveWidth(14),
+    width: responsiveWidth(30),
+    height: responsiveHeight(13),
+    borderRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 100,
+    shadowRadius: 10,
+  },
+  container2: {
+    marginTop: responsiveHeight(-13),
+    marginLeft: responsiveWidth(55),
+    width: responsiveWidth(30),
+    height: responsiveHeight(13),
+    borderRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 100,
+    shadowRadius: 10,
+  },
 
 
 })
