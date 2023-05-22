@@ -73,21 +73,24 @@ export default function Registration(props) {
     }
   };
 
+
   const handleEmailChange = text => {
-    const emailRegex = /\s^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(text)) {
-      setEmailError('Invalid email address ');
+      setEmailError('Invalid email address');
     } else {
       setEmailError('');
     }
     setEmail(text);
   };
-
   const handlePassChange = text => {
+    const passtrim = pass.trim();
     const passRegex =
-      /\s^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!passRegex.test(text)) {
-      setPassError('Weak Password');
+      setPassError(
+        'Password must contain Character & Special Character or Number',
+      );
     } else {
       setPassError('');
     }
