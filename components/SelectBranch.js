@@ -8,26 +8,27 @@ import {
 } from "react-native-responsive-dimensions";
 import { Picker } from "@react-native-picker/picker";
 
-export default function SelectBranch(props) {
 
-  const [gender, setGender] = useState('Unknown');
+const SelectBranch =() =>{
+
+  const [gender, setGender] = useState('');
 
   return (
     <View style={styles.weight}>
-      <Image style={styles.wlogo} source={require('../assets/branch.png')} />
-      <Picker
-        selectedValue={gender}
-        onValueChange={(value, index) => setGender(value)}
-        mode="picker"
-        style={styles.picker}
-      >
-        <Picker.Item label="       Select Branch" value="Unknown" />
-        <Picker.Item label="       CSE" value="CSE" />
-        <Picker.Item label="       ME" value="ME" />
-        <Picker.Item label="       ECE" value="ECE" />
-        <Picker.Item label="       Civil" value="Civil" />
-        <Picker.Item label="       EE" value="EE" />
-      </Picker>
+        <Image style={styles.wlogo} source={require('../assets/branch.png')} />
+        <Picker 
+          selectedValue={gender}
+          onValueChange={(Itemvalue, index) => setGender(Itemvalue)}
+          mode="picker"
+          style={styles.picker}
+        >
+          <Picker.Item label="       Select Branch" value="Unknown" />
+          <Picker.Item label="       CSE" value="CSE" />
+          <Picker.Item label="       ME" value="ME" />
+          <Picker.Item label="       ECE" value="ECE" />
+          <Picker.Item label="       Civil" value="Civil" />
+          <Picker.Item label="       EE" value="EE" />
+          </Picker>
     </View>
   );
 }
@@ -35,7 +36,7 @@ export default function SelectBranch(props) {
 const styles = StyleSheet.create({
 
   text: {
-    fontSize: responsiveFontSize(1),
+    fontSize:responsiveFontSize(1),
     color: 'grey',
     textAlign: 'center'
   },
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     borderColor: 'black',
-    borderRadius: 25,
+      borderRadius: 25,
     borderWidth: 1,
     width: responsiveWidth(80),
     height: responsiveHeight(7),
@@ -57,17 +58,17 @@ const styles = StyleSheet.create({
     height: responsiveHeight(7.8),
     fontSize: responsiveFontSize(1),
     marginTop: responsiveHeight(-0.9)
-
+  
     // backgroundColor: 'green'
   },
 
   wlogo: {
     position: 'absolute',
-    width: responsiveWidth(4.5),
+    width:responsiveWidth(4.5),
     height: responsiveHeight(2.6),
     marginLeft: responsiveWidth(4),
     marginTop: responsiveHeight(2),
   },
 
 });
-
+export default SelectBranch 

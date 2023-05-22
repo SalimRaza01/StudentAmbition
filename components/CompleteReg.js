@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
-import { Text, View, Image, TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import { Text, View,  TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
   responsiveFontSize
 } from "react-native-responsive-dimensions";
+import LinearGradient from 'react-native-linear-gradient';
 
-export default function CompleteReg({ navigation }) {
+export default function CompleteReg(props) {
   const bounceAnim = useRef(new Animated.Value(0)).current;
 
 
@@ -14,18 +15,11 @@ export default function CompleteReg({ navigation }) {
     Animated.spring(bounceAnim, {
       toValue: 1,
       useNativeDriver: true,
-      speed: 50, // Adjust the speed as desired
-      bounciness: 20, // Adjust the bounciness as desired
+      speed: 50, 
+      bounciness: 20,
     }).start();
 
-    // Delay for 2 seconds (adjust as needed)
-    const delay = setTimeout(() => {
-      navigation.navigate('SelectPre'); // Replace 'AnotherScreen' with your target screen name
-    }, 3000);
-
-    // Clear the timeout when the component unmounts
-    return () => clearTimeout(delay);
-  }, [navigation]);
+  })
 
   const logoStyle = {
     transform: [{ scale: bounceAnim }],
@@ -38,6 +32,15 @@ export default function CompleteReg({ navigation }) {
         style={[styles.logo, logoStyle]}
         source={require('../assets/tick.png')}
       />
+
+<TouchableOpacity
+        style={styles.mybtn}
+        onPress={() => props.navigation.navigate('SelectPrefer')}>
+           <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+        <Text style={styles.btntext}>Next</Text>
+        </LinearGradient>
+      </TouchableOpacity>
+
     </View>
   );
 }
@@ -45,6 +48,27 @@ export default function CompleteReg({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  linearGradient: {
+    flex: 1,
+    borderRadius: 25,
+    justifyContent: "center",
+  },
+  mybtn: {
+    backgroundColor: '#92A3FD',
+    borderRadius: 30,
+    width: responsiveWidth(80),
+    height: responsiveHeight(6.8),
+    marginLeft: responsiveWidth(10),
+    marginTop: responsiveHeight(10),
+  },
+  btntext: {
+    flex: 1,
+    fontSize: responsiveFontSize(2),
+    textAlign: 'center',
+    marginTop: responsiveHeight(2),
+    color: 'white',
+    fontWeight: 'bold',
   },
   logo: {
     position: 'absolute',
@@ -58,8 +82,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(4),
     fontWeight: 'bold',
     color: '#5A61C9',
-    textAlign: 'center',
-
+    textAlign:'center',
+    
     marginTop: responsiveHeight(55)
 
   },

@@ -16,18 +16,18 @@ export default function SelectGender(props) {
 
   return (
     <View style={styles.weight}>
-      <Image style={styles.wlogo} source={require('../assets/course.png')} />
-      <Picker
-        selectedValue={gender}
-        onValueChange={(value, index) => setGender(value)}
-        mode="picker"
-        style={styles.picker}
-      >
-        <Picker.Item label="       Select Course" value="Unknown" />
-        <Picker.Item label="       B-Tech" value="B-Tech" />
-        <Picker.Item label="       M-Tech" value="M-Tech" />
-        <Picker.Item label="       Other" value="Other" />
-      </Picker>
+        <Image style={styles.wlogo} source={require('../assets/course.png')} />
+        <Picker 
+          selectedValue={gender}
+          onValueChange={(value, index) => setGender(value)}
+          mode="picker"
+          style={styles.picker}
+        >
+          <Picker.Item label="       Select Course" value="Unknown" />
+          <Picker.Item label="       B-Tech" value="B-Tech" />
+          <Picker.Item label="       M-Tech" value="M-Tech" />
+          <Picker.Item label="       Other" value="Other" />
+          </Picker>
     </View>
   );
 }
@@ -35,7 +35,7 @@ export default function SelectGender(props) {
 const styles = StyleSheet.create({
 
   text: {
-    fontSize: responsiveFontSize(1),
+    fontSize:responsiveFontSize(1),
     color: 'grey',
     textAlign: 'center'
   },
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     borderColor: 'black',
-    borderRadius: 25,
+      borderRadius: 25,
     borderWidth: 1,
     width: responsiveWidth(80),
     height: responsiveHeight(7),
@@ -57,13 +57,13 @@ const styles = StyleSheet.create({
     height: responsiveHeight(7.8),
     fontSize: responsiveFontSize(1),
     marginTop: responsiveHeight(-0.9)
-
+  
     // backgroundColor: 'green'
   },
 
   wlogo: {
     position: 'absolute',
-    width: responsiveWidth(4.5),
+    width:responsiveWidth(4.5),
     height: responsiveHeight(2.6),
     marginLeft: responsiveWidth(4),
     marginTop: responsiveHeight(2),

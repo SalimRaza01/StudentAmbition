@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
-  responsiveFontSize
-} from "react-native-responsive-dimensions";
+  responsiveFontSize,
+} from 'react-native-responsive-dimensions';
 import CheckBox from '@react-native-community/checkbox';
 import SelectGender from './SelectGender';
-import auth from '@react-native-firebase/auth';
-import { create } from 'react-test-renderer';
-import { useNavigation } from '@react-navigation/native';
-
+import {createUserWithEmailAndPassword} from 'firebase/auth';
+import {auth} from '../firebase/firebase.config';
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function Registration(props) {
-  const navigation = useNavigation();
-
-
-  // const [firstname, setFirstName] = useState('');
-  // const [firstnameError, setFirstNameError] = useState('');
-  // const [lastname, setLastName] = useState('');
-  // const [lastnameError, setLastNameError] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [firstnameError, setFirstNameError] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [lastnameError, setLastNameError] = useState('');
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [pass, setPass] = useState('');
@@ -27,49 +30,51 @@ export default function Registration(props) {
   const [isChecked, setIsChecked] = useState(false);
   const [selected, setSelection] = useState(false);
 
-
-  const createUser = () => {
-    auth()
-      .createUserWithEmailAndPassword(email, pass)
-      .then(() => {
-        // alert('User account created & signed in');
+  const signUp = () => {
+    createUserWithEmailAndPassword(auth, email, pass)
+      .then(userCredential => {
+        const user = userCredential.user;
       })
       .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          alert('Already Used Email');
-        }
-        if (error.code === 'auth/invalid-email') {
-          alert('email is invalid');
-        }
-        alert.error(error);
+        const errorCode = error.code;
+        const errorMessage = error.message;
       });
-  }
+  };
 
-  const NextScreen = () => {
-    navigation.navigate('CompleteReg');
-  }
+  const handleFirstNameChange = text => {
+    const trimmedText = text.trim();
 
+    if (trimmedText.length < 3) {
+      setFirstNameError('Name must be at least 3 characters');
+    } else {
+      setFirstNameError('');
+    }
 
-  // const handleFirstNameChange = text => {
-  //   if (text.length < 3) {
-  //     setFirstNameError('Name must be at least 3 characters');
-  //   } else {
-  //     setFirstNameError('');
-  //   }
-  //   setFirstName(text);
-  // };
+    setFirstName(trimmedText);
 
-  // const handleLastNameChange = text => {
-  //   if (text.length < 3) {
-  //     setLastNameError('Name must be at least 3 characters');
-  //   } else {
-  //     setLastNameError('');
-  //   }
-  //   setLastName(text);
-  // };
+    if (text !== trimmedText) {
+      alert('Whitespace is not allowed');
+    }
+  };
+
+  const handleLastNameChange = text => {
+    const trimmedText = text.trim();
+
+    if (trimmedText.length < 3) {
+      setLastNameError('Name must be at least 3 characters');
+    } else {
+      setLastNameError('');
+    }
+
+    setLastName(trimmedText);
+
+    if (text !== trimmedText) {
+      alert('Whitespace is not allowed');
+    }
+  };
 
   const handleEmailChange = text => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /\s^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(text)) {
       setEmailError('Invalid email address ');
     } else {
@@ -79,8 +84,8 @@ export default function Registration(props) {
   };
 
   const handlePassChange = text => {
-    const passtrim = pass.trim()
-    const passRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+    const passRegex =
+      /\s^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!passRegex.test(text)) {
       setPassError('Weak Password');
     } else {
@@ -94,41 +99,52 @@ export default function Registration(props) {
   };
 
   return (
-
     <View>
-      <View >
-        <Text style={styles.para1}>
-          Register
-        </Text>
+      <View>
+        <Text style={styles.para1}>Register</Text>
         <View style={styles.fname}>
-          <Image style={styles.flogo} source={require('../assets/Profile.png')} />
+          <Image
+            style={styles.flogo}
+            source={require('../assets/Profile.png')}
+          />
           <TextInput
-            placeholder="First Name" placeholderTextColor={'grey'} color='black'
-          // value={firstname}
-          // onChangeText={handleFirstNameChange}
+            placeholder="First Name"
+            placeholderTextColor={'grey'}
+            color="black"
+            value={firstname}
+            onChangeText={handleFirstNameChange}
           />
         </View>
-        {/* {firstnameError ? (
+        {firstnameError ? (
           <Text style={styles.error}>{firstnameError}</Text>
-        ) : null} */}
+        ) : null}
 
         <View style={styles.lname}>
-          <Image style={styles.llogo} source={require('../assets/Profile.png')} />
-          <TextInput
-            placeholder="Last Name" placeholderTextColor={'grey'} color='black'
-          // value={lastname}
-          // onChangeText={handleLastNameChange}
+          <Image
+            style={styles.llogo}
+            source={require('../assets/Profile.png')}
           />
-
+          <TextInput
+            placeholder="Last Name"
+            placeholderTextColor={'grey'}
+            color="black"
+            value={lastname}
+            onChangeText={handleLastNameChange}
+          />
         </View>
-        {/* {lastnameError ? (
+        {lastnameError ? (
           <Text style={styles.error}>{lastnameError}</Text>
-        ) : null} */}
+        ) : null}
 
         <View style={styles.email}>
-          <Image style={styles.elogo} source={require('../assets/Message.png')} />
+          <Image
+            style={styles.elogo}
+            source={require('../assets/Message.png')}
+          />
           <TextInput
-            placeholder="Email" placeholderTextColor={'grey'} color='black'
+            placeholder="Email"
+            placeholderTextColor={'grey'}
+            color="black"
             value={email}
             onChangeText={handleEmailChange}
             keyboardType="email-address"
@@ -142,10 +158,11 @@ export default function Registration(props) {
         <View style={styles.pass}>
           <Image style={styles.plogo} source={require('../assets/Lock.png')} />
           <TextInput
-            placeholder="Password" placeholderTextColor={'grey'} color='black'
+            placeholder="Password"
+            placeholderTextColor={'grey'}
+            color="black"
             value={pass}
             onChangeText={handlePassChange}
-
           />
         </View>
         {passError ? <Text style={styles.error}>{passError}</Text> : null}
@@ -153,54 +170,61 @@ export default function Registration(props) {
         <View style={styles.pass}>
           <Image style={styles.plogo} source={require('../assets/Lock.png')} />
           <TextInput
-            placeholder="Confirm Password" placeholderTextColor={'grey'} color='black'
+            placeholder="Confirm Password"
+            placeholderTextColor={'grey'}
+            color="black"
             value={pass}
             onChangeText={handlePassChange}
-
           />
         </View>
         {passError ? <Text style={styles.error}>{passError}</Text> : null}
 
         <View style={styles.checkb}>
-
-          <CheckBox style={{ marginLeft: responsiveWidth(5), marginTop: responsiveHeight(1), borderColor: 'grey' }}
+          <CheckBox
+            style={{
+              marginLeft: responsiveWidth(5),
+              marginTop: responsiveHeight(1),
+              borderColor: 'grey',
+            }}
             value={selected}
             onPress={handleCheckboxChange}
             onValueChange={setSelection}
-            tintColors={{ true: '#2530A3', false: 'grey' }}
+            tintColors={{true: '#2530A3', false: 'grey'}}
           />
-          <Text style={styles.checktext} >i agree with Privacy Policy and Term & Conditions</Text>
+          <Text style={styles.checktext}>
+            i agree with Privacy Policy and Term & Conditions
+          </Text>
         </View>
         {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
       </View>
 
       <TouchableOpacity
         style={[styles.mybtn]}
-
         onPress={() => {
-          [createUser(), NextScreen()];
-        }}
-      >
-        <Text style={styles.btntext}>Register</Text>
+          signUp();
+        }}>
+        <LinearGradient
+          colors={['#848AF28C', '#5A61C9FF']}
+          style={styles.linearGradient}>
+          <Text style={styles.btntext}>Register</Text>
+        </LinearGradient>
       </TouchableOpacity>
-
-      {/* style={styles.mybtn} onPress={() => {
-        createUser();
-
-      }} */}
 
       <View style={styles.loginlink}>
         <Text>Already have an account?</Text>
         <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
-          <Text style={{ color: '#C58BF2' }}> Login</Text>
+          <Text style={{color: '#C58BF2'}}> Login</Text>
         </TouchableOpacity>
       </View>
-
     </View>
-  )
-
+  );
 }
 const styles = StyleSheet.create({
+  linearGradient: {
+    flex: 1,
+    borderRadius: 25,
+    justifyContent: 'center',
+  },
   fname: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
@@ -210,7 +234,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(80),
     height: responsiveHeight(7),
     marginLeft: responsiveWidth(10),
-    marginTop: responsiveHeight(4)
+    marginTop: responsiveHeight(4),
   },
   lname: {
     flexDirection: 'row',
@@ -220,7 +244,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(80),
     height: responsiveHeight(7),
     marginLeft: responsiveWidth(10),
-    marginTop: responsiveHeight(2)
+    marginTop: responsiveHeight(2),
   },
   email: {
     flexDirection: 'row',
@@ -230,7 +254,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(80),
     height: responsiveHeight(7),
     marginLeft: responsiveWidth(10),
-    marginTop: responsiveHeight(2)
+    marginTop: responsiveHeight(2),
   },
   pass: {
     flexDirection: 'row',
@@ -240,16 +264,14 @@ const styles = StyleSheet.create({
     width: responsiveWidth(80),
     height: responsiveHeight(7),
     marginLeft: responsiveWidth(10),
-    marginTop: responsiveHeight(2)
+    marginTop: responsiveHeight(2),
   },
   para1: {
-
     fontSize: responsiveFontSize(4),
     fontWeight: 'bold',
     color: '#5A61C9',
     marginLeft: responsiveWidth(12),
-    marginTop: responsiveHeight(4)
-
+    marginTop: responsiveHeight(4),
   },
 
   mybtn: {
@@ -258,7 +280,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(80),
     height: responsiveHeight(6.8),
     marginLeft: responsiveWidth(10),
-    marginTop: responsiveHeight(6)
+    marginTop: responsiveHeight(6),
   },
   disabledButton: {
     backgroundColor: 'grey',
@@ -266,7 +288,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(80),
     height: responsiveHeight(6.8),
     marginLeft: responsiveWidth(10),
-    marginTop: responsiveHeight(6)
+    marginTop: responsiveHeight(6),
   },
   btntext: {
     flex: 1,
@@ -274,7 +296,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: responsiveHeight(2),
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   flogo: {
     marginLeft: responsiveWidth(4),
@@ -287,13 +309,11 @@ const styles = StyleSheet.create({
     marginRight: responsiveWidth(3),
   },
   elogo: {
-
     marginLeft: responsiveWidth(4),
     marginTop: responsiveHeight(2.4),
     marginRight: responsiveWidth(3),
   },
   plogo: {
-
     marginLeft: responsiveWidth(4),
     marginTop: responsiveHeight(2.4),
     marginRight: responsiveWidth(3),
@@ -302,12 +322,12 @@ const styles = StyleSheet.create({
   loginlink: {
     flexDirection: 'row',
     marginLeft: responsiveWidth(25),
-    marginTop: responsiveHeight(3)
+    marginTop: responsiveHeight(3),
   },
   checkb: {
     flexDirection: 'row',
     marginLeft: responsiveWidth(7),
-    marginTop: responsiveHeight(2)
+    marginTop: responsiveHeight(2),
   },
   checktext: {
     fontSize: responsiveFontSize(1.4),
@@ -315,11 +335,11 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(1.8),
     marginLeft: responsiveWidth(1),
     marginRight: responsiveWidth(20),
-    fontFamily: 'poppins'
+    fontFamily: 'poppins',
   },
   error: {
     color: 'red',
     textAlign: 'center',
-    margintop: responsiveHeight(5)
+    margintop: responsiveHeight(5),
   },
-})
+});
