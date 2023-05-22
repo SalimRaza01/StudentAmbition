@@ -21,9 +21,9 @@ import {auth} from '../firebase/firebase.config';
 export default function (props) {
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('null');
+  const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [pass, setPass] = useState('null');
+  const [pass, setPass] = useState('');
   const [passError, setPassError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [selected, setSelection] = useState(false);
@@ -220,5 +220,10 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2),
     color: 'white',
     fontWeight: 'bold',
+  },
+  error: {
+    color: 'red',
+    textAlign: 'center',
+    margintop: responsiveHeight(5),
   },
 });
