@@ -7,7 +7,7 @@ import {
 } from "react-native-responsive-dimensions";
 import LinearGradient from 'react-native-linear-gradient';
 
-export default function AboutPage() {
+export default function AboutPage(props) {
 
     const slideAnim = useRef(new Animated.Value(-100)).current;
 

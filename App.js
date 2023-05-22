@@ -59,6 +59,8 @@ import Coding from './components/Coding';
 import Placement from './components/Placement';
 import Internship from './components/Internship';
 import Home from './components/Home';
+import  MenuDrawer from './components/L1'
+import MyDrawer from './components/MyDrawer';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -68,6 +70,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="L1" component={L1} />
+      <Stack.Screen name="MyDrawer" component={MyDrawer} />
+<Stack.Screen name="ManuDrawer" component={MenuDrawer} />
 <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="AboutPage" component={AboutPage} />
@@ -105,7 +110,6 @@ export default function App() {
         <Stack.Screen name="QME3" component={QME3} />
         <Stack.Screen name="QME4" component={QME4} />
         <Stack.Screen name="Q1" component={Q1} />
-        <Stack.Screen name="L1" component={L1} />
         <Stack.Screen name="AS" component={AS} />
         <Stack.Screen name="Coding" component={Coding} />
         <Stack.Screen name="SubjectCS2" component={SubjectCS2} />
