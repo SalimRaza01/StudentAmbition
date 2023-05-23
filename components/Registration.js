@@ -42,9 +42,9 @@ export default function Registration(props) {
       unsubscribe();
     };
   }, []);
-  
 
- const signIn = () => {
+
+ const signUp = () => {
     if (!isConnected) {
       alert('No internet connection');
       return;
