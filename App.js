@@ -70,10 +70,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+<Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="L1" component={L1} />
       <Stack.Screen name="MyDrawer" component={MyDrawer} />
 <Stack.Screen name="ManuDrawer" component={MenuDrawer} />
-<Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="AboutPage" component={AboutPage} />
         <Stack.Screen name="Subject1" component={Subject1} />

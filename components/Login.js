@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -15,11 +15,14 @@ import {
 import CheckBox from '@react-native-community/checkbox';
 import {useNavigation} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
+import NetInfo from '@react-native-community/netinfo';
 import {signInWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '../firebase/firebase.config';
 
 export default function (props) {
   const navigation = useNavigation();
+
+  const [isConnected, setIsConnected] = useState(true);
 
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -28,18 +31,33 @@ export default function (props) {
   const [isChecked, setIsChecked] = useState(false);
   const [selected, setSelection] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(state.isConnected);
+    });
+  
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  
   const signIn = () => {
-    
+    if (!isConnected) {
+      alert('No internet connection');
+      return;
+    }
+  
     signInWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
- navigation.replace("CompleteReg")
+        navigation.replace('CompleteReg');
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert("User Not Found");
+        alert('User Not Found');
       });
   };
+  
 
 
   const handleEmailChange = text => {

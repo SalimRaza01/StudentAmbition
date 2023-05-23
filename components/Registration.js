@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -16,9 +16,11 @@ import CheckBox from '@react-native-community/checkbox';
 import SelectGender from './SelectGender';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '../firebase/firebase.config';
+import NetInfo from '@react-native-community/netinfo';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function Registration(props) {
+  const [isConnected, setIsConnected] = useState(true);
   const [firstname, setFirstName] = useState('');
   const [firstnameError, setFirstNameError] = useState('');
   const [lastname, setLastName] = useState('');
@@ -30,7 +32,23 @@ export default function Registration(props) {
   const [isChecked, setIsChecked] = useState(false);
   const [selected, setSelection] = useState(false);
 
-  const signUp = () => {
+  
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(state.isConnected);
+    });
+  
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  
+
+ const signIn = () => {
+    if (!isConnected) {
+      alert('No internet connection');
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
         const user = userCredential.user;
