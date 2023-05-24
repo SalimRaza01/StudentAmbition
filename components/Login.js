@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -13,11 +13,11 @@ import {
   responsiveFontSize,
 } from 'react-native-responsive-dimensions';
 import CheckBox from '@react-native-community/checkbox';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import NetInfo from '@react-native-community/netinfo';
-import {signInWithEmailAndPassword} from 'firebase/auth';
-import {auth} from '../firebase/firebase.config';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebase.config';
 
 export default function (props) {
   const navigation = useNavigation();
@@ -35,18 +35,18 @@ export default function (props) {
     const unsubscribe = NetInfo.addEventListener(state => {
       setIsConnected(state.isConnected);
     });
-  
+
     return () => {
       unsubscribe();
     };
   }, []);
-  
+
   const signIn = () => {
     if (!isConnected) {
       alert('No internet connection');
       return;
     }
-  
+
     signInWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
         navigation.replace('CompleteReg');
@@ -57,7 +57,7 @@ export default function (props) {
         alert('User Not Found');
       });
   };
-  
+
 
 
   const handleEmailChange = text => {
@@ -127,7 +127,7 @@ export default function (props) {
           value={selected}
           onPress={handleCheckboxChange}
           onValueChange={setSelection}
-          tintColors={{true: '#2530A3', false: 'grey'}}
+          tintColors={{ true: '#2530A3', false: 'grey' }}
         />
         <Text style={styles.checktext}>Remember Me </Text>
       </View>
@@ -135,10 +135,11 @@ export default function (props) {
 
       <TouchableOpacity
         style={styles.mybtn}
-        onPress={() => { signIn();
+        onPress={() => {
+          signIn();
         }}>
-           <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
-        <Text style={styles.btntext}>Login</Text>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Login</Text>
         </LinearGradient>
       </TouchableOpacity>
 
@@ -146,7 +147,7 @@ export default function (props) {
         <Text>Don't have account ?</Text>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('Registration')}>
-          <Text style={{color: '#C58BF2'}}> Create New </Text>
+          <Text style={{ color: '#C58BF2' }}> Create New </Text>
         </TouchableOpacity>
       </View>
     </View>
