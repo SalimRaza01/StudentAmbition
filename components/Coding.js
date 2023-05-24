@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet,Linking, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -9,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const handleLinkPress = (url) => {
   Linking.openURL(url);
-  };
+};
 export default function Coding(props) {
 
   return (
@@ -22,32 +22,32 @@ export default function Coding(props) {
       </LinearGradient>
 
       <TouchableOpacity style={styles.container}
-        onPress={ () =>handleLinkPress('https://www.codility.com/')}>
+        onPress={() => handleLinkPress('https://www.codility.com/')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Codility</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      
+
 
       <TouchableOpacity style={styles.container2}
-      onPress={ () =>handleLinkPress('https://www.hackerrank.com/')}>
+        onPress={() => handleLinkPress('https://www.hackerrank.com/')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>HackerRank</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      
+
 
       <TouchableOpacity style={styles.container}
-       onPress={ () =>handleLinkPress('https://www.codingninjas.com/landing/cnsat/?utm_source=google&utm_medium=[search]&utm_campaign=20131922872_149942135238_e_coding%20ninjas__658412799015_m____9040188&gad=1&gclid=CjwKCAjwvJyjBhApEiwAWz2nLbUrJAlhLIe4Y8tOge06Zggv1j4QGH_RT8hpCah7ibLPSmEDDflUixoCbjMQAvD_BwE')}>
+        onPress={() => handleLinkPress('https://www.codingninjas.com/landing/cnsat/?utm_source=google&utm_medium=[search]&utm_campaign=20131922872_149942135238_e_coding%20ninjas__658412799015_m____9040188&gad=1&gclid=CjwKCAjwvJyjBhApEiwAWz2nLbUrJAlhLIe4Y8tOge06Zggv1j4QGH_RT8hpCah7ibLPSmEDDflUixoCbjMQAvD_BwE')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Coding        Ninja</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.container2} 
-       onPress={ () =>handleLinkPress('https://www.codechef.com/')}>
+      <TouchableOpacity style={styles.container2}
+        onPress={() => handleLinkPress('https://www.codechef.com/')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>CodeChief</Text>
         </LinearGradient>
@@ -55,34 +55,34 @@ export default function Coding(props) {
 
 
       <TouchableOpacity style={styles.container}
-      onPress={ () =>handleLinkPress('https://www.hubspot.com/products/crm')}>
+        onPress={() => handleLinkPress('https://www.hubspot.com/products/crm')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>HubSpot    Academy</Text>
         </LinearGradient>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.container2}
-       onPress={ () =>handleLinkPress('https://codesignal.com/')}>
+        onPress={() => handleLinkPress('https://codesignal.com/')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>CodeSignal</Text>
         </LinearGradient>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.container} 
-    onPress={ () =>handleLinkPress('https://www.udacity.com/courses/all?utm_source=gsem_india_brand&utm_medium=ads_r&utm_campaign=18068487081_m&utm_term=140610604776_in&utm_keyword=udacity_e&gclid=CjwKCAjwvJyjBhApEiwAWz2nLeGPNMCTCOrB21ruN4VKbKUEYXcGH8akDL-AeWsW8CP19OF9qFzYuBoCYgwQAvD_BwE')}>
+      <TouchableOpacity style={styles.container}
+        onPress={() => handleLinkPress('https://www.udacity.com/courses/all?utm_source=gsem_india_brand&utm_medium=ads_r&utm_campaign=18068487081_m&utm_term=140610604776_in&utm_keyword=udacity_e&gclid=CjwKCAjwvJyjBhApEiwAWz2nLeGPNMCTCOrB21ruN4VKbKUEYXcGH8akDL-AeWsW8CP19OF9qFzYuBoCYgwQAvD_BwE')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Udacity</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.container2} 
-      onPress={ () =>handleLinkPress('https://www.infosecinstitute.com/')}>
+      <TouchableOpacity style={styles.container2}
+        onPress={() => handleLinkPress('https://www.infosecinstitute.com/')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Infosec</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      
-      
+
+
 
     </View>
   )

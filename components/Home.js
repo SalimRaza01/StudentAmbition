@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet,Linking, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -9,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const handleLinkPress = (url) => {
   Linking.openURL(url);
-  };
+};
 export default function Home(props) {
 
   return (
@@ -22,13 +22,13 @@ export default function Home(props) {
       </LinearGradient>
 
       <TouchableOpacity style={styles.container}
-        onPress={ () =>handleLinkPress('https://www.youtube.com/live/86sCMfOK4xA?feature=share')}>
+        onPress={() => handleLinkPress('https://www.youtube.com/live/86sCMfOK4xA?feature=share')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Scope</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      
+
 
       <TouchableOpacity style={styles.container2} onPress={() => props.navigation.navigate('SelectPrefer')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
@@ -36,17 +36,17 @@ export default function Home(props) {
         </LinearGradient>
       </TouchableOpacity>
 
-      
+
 
       <TouchableOpacity style={styles.container}
-       onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLWc1yfTYfqNFfeyUbhfUXY1LJrBGiPeGL')}>
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLWc1yfTYfqNFfeyUbhfUXY1LJrBGiPeGL')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Gain            Skills</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.container2} 
-       onPress={ () =>handleLinkPress('https://youtu.be/QLqTYtka2Vg')}>
+      <TouchableOpacity style={styles.container2}
+        onPress={() => handleLinkPress('https://youtu.be/QLqTYtka2Vg')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Practise        Sets</Text>
         </LinearGradient>
@@ -77,7 +77,7 @@ export default function Home(props) {
           <Text style={styles.btntext}>Placement</Text>
         </LinearGradient>
       </TouchableOpacity>
-      
+
 
     </View>
   )

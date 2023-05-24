@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, ScrollView, Image,Linking, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Image, Linking, TouchableOpacity } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -9,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const handleLinkPress = (url) => {
   Linking.openURL(url);
-  };
+};
 export default function Subject1(props) {
 
   return (
@@ -17,73 +17,73 @@ export default function Subject1(props) {
     <View >
 
       <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.header}>
-        <Text style={styles.headertext  }>   Question Papers</Text>
+        <Text style={styles.headertext}>   Question Papers</Text>
       </LinearGradient>
       <ScrollView style={{ marginBottom: 120 }}>
-        <LinearGradient colors={['#848AF28C','#5A61C9FF']} style={styles.linearGradient}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>Water Resources Engg.</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>DSS</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>Bridge Engg.</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>Finite Element methods</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>Engineering  Hydrology</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>PAS</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>Open Channel Flow</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>PMCP</Text>
           </TouchableOpacity>
-          </LinearGradient>
-          <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+        </LinearGradient>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>Environmental Geo-technology</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
+            onPress={() => handleLinkPress('https://drive.google.com/drive/folders/1rekucqvsuUBWWZDkMF68DLADpw9KKqUE?usp=share_link')}>
             <Text style={styles.btntext}>Tunnel Engg.</Text>
           </TouchableOpacity>
-          </LinearGradient>
+        </LinearGradient>
 
 
       </ScrollView>
-       
+
     </View>
   )
 
@@ -97,9 +97,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: responsiveHeight(6),
     color: 'white',
-    height:responsiveHeight(7),
-   
-    
+    height: responsiveHeight(7),
+
+
 
   },
   headertext: {
@@ -109,9 +109,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
- 
+
   btntext: {
-  
+
     fontSize: responsiveFontSize(2),
     textAlign: 'center',
     marginTop: responsiveHeight(2),
@@ -120,14 +120,14 @@ const styles = StyleSheet.create({
 
   },
   linearGradient: {
-    flex:1,
+    flex: 1,
     borderRadius: 10,
     width: responsiveWidth(80),
     height: responsiveHeight(8),
     marginLeft: responsiveWidth(10),
     marginTop: responsiveHeight(3),
-    borderBottomWidth:2,
-    borderEndColor:'black',
+    borderBottomWidth: 2,
+    borderEndColor: 'black',
   }
 
 

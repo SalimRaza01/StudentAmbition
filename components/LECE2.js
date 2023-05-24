@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, ScrollView,Linking, Image, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, Linking, Image, TouchableOpacity } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -8,94 +8,94 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 const handleLinkPress = (url) => {
   Linking.openURL(url);
-  };
+};
 export default function SubjectCS3(props) {
 
   return (
 
     <View >
 
-<LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.header}>
-        <Text style={styles.headertext  }>   Lectures</Text>
+      <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.header}>
+        <Text style={styles.headertext}>   Lectures</Text>
       </LinearGradient>
       <ScrollView style={{ marginBottom: 100 }}>
-        <LinearGradient colors={['#848AF28C','#5A61C9FF']} style={styles.linearGradient}>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PL-JvKqQx2AtdMoxNiK4p7jomyAxgayJlC')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PL-JvKqQx2AtdMoxNiK4p7jomyAxgayJlC')}>
             <Text style={styles.btntext}>ADEC</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-           onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PL-JvKqQx2Atd--1Gs3WB8nmWOWRbEM7WW')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PL-JvKqQx2Atd--1Gs3WB8nmWOWRbEM7WW')}>
             <Text style={styles.btntext}>Electromagnetic Feild Theory</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            oonPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLysZquKdjuWQCTJp4jbSNHkwl3fDI9zyA')}>
+            oonPress={() => handleLinkPress('https://youtube.com/playlist?list=PLysZquKdjuWQCTJp4jbSNHkwl3fDI9zyA')}>
             <Text style={styles.btntext}>basic Signals & Systems</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-           onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLxCzCOWd7aiEed7SKZBnC6ypFDWYLRvB2')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLxCzCOWd7aiEed7SKZBnC6ypFDWYLRvB2')}>
             <Text style={styles.btntext}>Python</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-           onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLmAmHQ-_5ySyQeEryrlomrEvOGNYN3TAL')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLmAmHQ-_5ySyQeEryrlomrEvOGNYN3TAL')}>
             <Text style={styles.btntext}>Cyber System Security</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PL-JvKqQx2Atf5w_httliQrmqPpL7oLc-W')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PL-JvKqQx2Atf5w_httliQrmqPpL7oLc-W')}>
             <Text style={styles.btntext}>Math IV</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('hhttps://youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_')}>
+            onPress={() => handleLinkPress('hhttps://youtube.com/playlist?list=PLxCzCOWd7aiGFBD2-2joCpWOLUrDLvVV_')}>
             <Text style={styles.btntext}>Universal Human Values</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-           onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PL3rE2jS8zxAxoOuFJHJcbeM7GwJ-JLnfj')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PL3rE2jS8zxAxoOuFJHJcbeM7GwJ-JLnfj')}>
             <Text style={styles.btntext}>Digital Electronics</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-           onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLR5USSocuZ5dxwi3eVsC-xvA4Ux80d6X4')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLR5USSocuZ5dxwi3eVsC-xvA4Ux80d6X4')}>
             <Text style={styles.btntext}>NAS</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PL3rE2jS8zxAxoOuFJHJcbeM7GwJ-JLnfj')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PL3rE2jS8zxAxoOuFJHJcbeM7GwJ-JLnfj')}>
             <Text style={styles.btntext}>Circuit Simulation</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PL4yL5rqgtVtq1NSGGz8ugZHV9PVk8xvQI')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PL4yL5rqgtVtq1NSGGz8ugZHV9PVk8xvQI')}>
             <Text style={styles.btntext}>Computer Graphics</Text>
           </TouchableOpacity>
         </LinearGradient>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <TouchableOpacity style={styles.mybtn}
-            onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLxCzCOWd7aiEed7SKZBnC6ypFDWYLRvB2')}>
+            onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLxCzCOWd7aiEed7SKZBnC6ypFDWYLRvB2')}>
             <Text style={styles.btntext}>Software Engineering</Text>
           </TouchableOpacity>
         </LinearGradient>
-        
+
 
 
       </ScrollView>
-        
+
     </View>
   )
 
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     marginBottom: responsiveHeight(2),
     color: 'black',
-    height:responsiveHeight(7),
+    height: responsiveHeight(7),
 
   },
   headertext: {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(8),
   },
   btntext: {
-  
+
     fontSize: responsiveFontSize(2),
     textAlign: 'center',
     marginTop: responsiveHeight(2),
@@ -136,14 +136,14 @@ const styles = StyleSheet.create({
 
   },
   linearGradient: {
-    flex:1,
+    flex: 1,
     borderRadius: 10,
     width: responsiveWidth(80),
     height: responsiveHeight(8),
     marginLeft: responsiveWidth(10),
     marginTop: responsiveHeight(3),
-    borderBottomWidth:2,
-    borderEndColor:'black',
+    borderBottomWidth: 2,
+    borderEndColor: 'black',
   }
 
 

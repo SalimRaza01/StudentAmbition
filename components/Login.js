@@ -127,7 +127,7 @@ export default function LoginScreen(props) {
     }
     setPass(text);
   };
- 
+
   return (
     <View>
       <Image style={styles.logo} source={require('../assets/Logo.png')} />
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: responsiveHeight(1),
-    marginLeft:responsiveHeight(6),
+    marginLeft: responsiveHeight(6),
   },
   linearGradient: {
     flex: 1,

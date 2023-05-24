@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet,Linking, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Linking, TouchableOpacity } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -9,7 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const handleLinkPress = (url) => {
   Linking.openURL(url);
-  };
+};
 export default function AS(props) {
 
   return (
@@ -22,32 +22,32 @@ export default function AS(props) {
       </LinearGradient>
 
       <TouchableOpacity style={styles.container}
-        onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLW-zSkCnZ-gA5Jn6gZtUa6-aG0OoRZyb6')}>
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLW-zSkCnZ-gA5Jn6gZtUa6-aG0OoRZyb6')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Adobe      Photoshop</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      
+
 
       <TouchableOpacity style={styles.container2}
-       onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLVlQHNRLflP_5_vCknMsxLS-mTJgq1QzH')}>
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLVlQHNRLflP_5_vCknMsxLS-mTJgq1QzH')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>UI        Designing</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      
+
 
       <TouchableOpacity style={styles.container}
-       onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PL9pkETrdJ0rZoid7XU1OmQ5zvPVQ0sRJl')}>
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PL9pkETrdJ0rZoid7XU1OmQ5zvPVQ0sRJl')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Graphic     Designing</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.container2} 
-       onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLVlQHNRLflP_5_vCknMsxLS-mTJgq1QzH')}>
+      <TouchableOpacity style={styles.container2}
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLVlQHNRLflP_5_vCknMsxLS-mTJgq1QzH')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>UX      Designing</Text>
         </LinearGradient>
@@ -55,14 +55,14 @@ export default function AS(props) {
 
 
       <TouchableOpacity style={styles.container}
-        onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLuRPummNMvIN43IBo1EltezV2ngqYz5T6')}>
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLuRPummNMvIN43IBo1EltezV2ngqYz5T6')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Adobe             XD</Text>
         </LinearGradient>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.container2}
-        onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLW-zSkCnZ-gDer-VZlBbe1f9-G0zNYdtg')}>
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLW-zSkCnZ-gDer-VZlBbe1f9-G0zNYdtg')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Logo       Designing</Text>
         </LinearGradient>
@@ -70,19 +70,19 @@ export default function AS(props) {
 
 
       <TouchableOpacity style={styles.container}
-        onPress={ () =>handleLinkPress('https://youtube.com/playlist?list=PLuRPummNMvINdAbI_WT7R5vdjcyRPeRiq')}>
+        onPress={() => handleLinkPress('https://youtube.com/playlist?list=PLuRPummNMvINdAbI_WT7R5vdjcyRPeRiq')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Figma</Text>
         </LinearGradient>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.container2} 
-       onPress={ () =>handleLinkPress('https://youtu.be/4_CHZQ1Euek')}>
+      <TouchableOpacity style={styles.container2}
+        onPress={() => handleLinkPress('https://youtu.be/4_CHZQ1Euek')}>
         <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
           <Text style={styles.btntext}>Wire        Framing</Text>
         </LinearGradient>
       </TouchableOpacity>
-      
+
 
     </View>
   )

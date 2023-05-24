@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Text, View,  TouchableOpacity, StyleSheet, Animated } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import {
   responsiveHeight,
   responsiveWidth,
@@ -15,7 +15,7 @@ export default function CompleteReg(props) {
     Animated.spring(bounceAnim, {
       toValue: 1,
       useNativeDriver: true,
-      speed: 50, 
+      speed: 50,
       bounciness: 20,
     }).start();
 
@@ -33,11 +33,11 @@ export default function CompleteReg(props) {
         source={require('../assets/tick.png')}
       />
 
-<TouchableOpacity
+      <TouchableOpacity
         style={styles.mybtn}
         onPress={() => props.navigation.navigate('SelectPrefer')}>
-           <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
-        <Text style={styles.btntext}>Next</Text>
+        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+          <Text style={styles.btntext}>Next</Text>
         </LinearGradient>
       </TouchableOpacity>
 
@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     fontSize: responsiveFontSize(4),
     fontWeight: 'bold',
     color: '#5A61C9',
-    textAlign:'center',
-    
+    textAlign: 'center',
+
     marginTop: responsiveHeight(55)
 
   },
