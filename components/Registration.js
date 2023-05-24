@@ -14,12 +14,16 @@ import {
 } from 'react-native-responsive-dimensions';
 import CheckBox from '@react-native-community/checkbox';
 import SelectGender from './SelectGender';
+import {useNavigation} from '@react-navigation/native';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import {auth} from '../firebase/firebase.config';
 import NetInfo from '@react-native-community/netinfo';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function Registration(props) {
+
+  const navigation = useNavigation();
+
   const [isConnected, setIsConnected] = useState(true);
   const [firstname, setFirstName] = useState('');
   const [firstnameError, setFirstNameError] = useState('');
@@ -44,20 +48,30 @@ export default function Registration(props) {
   }, []);
 
 
- const signUp = () => {
+  const signUp = () => {
     if (!isConnected) {
       alert('No internet connection');
       return;
     }
+  
     createUserWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
-        const user = userCredential.user;
+        // Registration successful
+        alert('Registration Successful');
+        // Perform navigation to 'CompleteReg' screen
+        navigation.replace('CompleteReg');
       })
       .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        if (error.code === 'auth/email-already-in-use') {
+          alert('Already Used Email');
+        } else if (error.code === 'auth/invalid-email') {
+          alert('Invalid email');
+        } else {
+          alert('Error: ' + error.message);
+        }
       });
   };
+  
 
   const handleFirstNameChange = text => {
     const trimmedText = text.trim();
