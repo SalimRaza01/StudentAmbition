@@ -107,7 +107,7 @@ export default function Registration(props) {
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!passRegex.test(text)) {
       setPassError(
-        'Password must contain Character & Special Character or Number',
+        'Weak Password',
       );
     } else {
       setPassError('');
