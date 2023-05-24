@@ -18,12 +18,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import NetInfo from '@react-native-community/netinfo';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function (props) {
+export default function LoginScreen(props) {
   const navigation = useNavigation();
 
   const [isConnected, setIsConnected] = useState(true);
-
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [pass, setPass] = useState('');
@@ -41,6 +41,44 @@ export default function (props) {
     };
   }, []);
 
+  // Load the stored email and password from AsyncStorage
+  useEffect(() => {
+    loadStoredCredentials();
+  }, []);
+
+  const saveCredentials = async () => {
+    try {
+      await AsyncStorage.setItem('email', email);
+      await AsyncStorage.setItem('pass', pass);
+    } catch (error) {
+      console.log('Error saving credentials:', error);
+    }
+  };
+
+  const loadStoredCredentials = async () => {
+    try {
+      const storedEmail = await AsyncStorage.getItem('email');
+      const storedPass = await AsyncStorage.getItem('pass');
+
+      if (storedEmail && storedPass) {
+        setEmail(storedEmail);
+        setPass(storedPass);
+        setIsChecked(true);
+      }
+    } catch (error) {
+      console.log('Error loading stored credentials:', error);
+    }
+  };
+
+  const clearStoredCredentials = async () => {
+    try {
+      await AsyncStorage.removeItem('email');
+      await AsyncStorage.removeItem('pass');
+    } catch (error) {
+      console.log('Error clearing stored credentials:', error);
+    }
+  };
+
   const signIn = () => {
     if (!isConnected) {
       alert('No internet connection');
@@ -49,16 +87,23 @@ export default function (props) {
 
     signInWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
+        if (isChecked) {
+          saveCredentials();
+        } else {
+          clearStoredCredentials();
+        }
         navigation.replace('CompleteReg');
       })
       .catch(error => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert('User Not Found');
+        alert('Invalid');
       });
   };
 
-
+  const toggleCheckbox = () => {
+    setIsChecked(!isChecked);
+  };
 
   const handleEmailChange = text => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -82,9 +127,7 @@ export default function (props) {
     }
     setPass(text);
   };
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
+ 
   return (
     <View>
       <Image style={styles.logo} source={require('../assets/Logo.png')} />
@@ -117,21 +160,14 @@ export default function (props) {
       </View>
       {passError ? <Text style={styles.error}>{passError}</Text> : null}
 
-      <View style={styles.checkb}>
+      <View style={styles.checkboxContainer}>
         <CheckBox
-          style={{
-            marginLeft: responsiveWidth(5),
-            marginTop: responsiveHeight(1),
-            borderColor: 'grey',
-          }}
-          value={selected}
-          onPress={handleCheckboxChange}
-          onValueChange={setSelection}
-          tintColors={{ true: '#2530A3', false: 'grey' }}
+          value={isChecked}
+          onValueChange={toggleCheckbox}
+          style={styles.checkbox}
         />
-        <Text style={styles.checktext}>Remember Me </Text>
+        <Text style={styles.label}>Keep me logged in</Text>
       </View>
-      {isChecked ? <Text style={styles.checkmark}>✓</Text> : null}
 
       <TouchableOpacity
         style={styles.mybtn}
@@ -155,6 +191,14 @@ export default function (props) {
 }
 
 const styles = StyleSheet.create({
+
+
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: responsiveHeight(1),
+    marginLeft:responsiveHeight(6),
+  },
   linearGradient: {
     flex: 1,
     borderRadius: 25,
@@ -205,20 +249,6 @@ const styles = StyleSheet.create({
     marginTop: responsiveHeight(2.4),
     marginRight: responsiveWidth(3),
   },
-  checkb: {
-    flexDirection: 'row',
-    marginLeft: responsiveWidth(7),
-    marginTop: responsiveHeight(1.5),
-  },
-  checktext: {
-    fontSize: responsiveFontSize(1.4),
-    color: 'grey',
-    marginTop: responsiveHeight(2),
-    marginLeft: responsiveWidth(1),
-    marginRight: responsiveWidth(20),
-    fontFamily: 'poppins',
-  },
-
   loginlink: {
     flexDirection: 'row',
     marginLeft: responsiveWidth(25),
@@ -245,4 +275,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margintop: responsiveHeight(5),
   },
+  label: {
+    fontSize: responsiveFontSize(1.4),
+    color: 'grey',
+    marginTop: responsiveHeight(0.2),
+    fontFamily: 'poppins',
+  }
 });

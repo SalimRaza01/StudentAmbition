@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -9,11 +9,14 @@ import {
 } from "react-native-responsive-dimensions";
 
 export default function SelectPrefer(props) {
+
     const [selectedValue1, setSelectedValue1] = useState('');
     const [selectedValue2, setSelectedValue2] = useState('');
     const [selectedValue3, setSelectedValue3] = useState('');
     const [selectedValue4, setSelectedValue4] = useState('');
+
     const navigation = useNavigation();
+    
     const handle = () => {
         if (selectedValue1 === 'B-Tech' &&
          (selectedValue2 === 'CSE' || selectedValue2 === 'EE' || selectedValue2 === 'ECE' || selectedValue2 === 'ME' || selectedValue2 === 'Civil')  && 

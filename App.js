@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import SplashScreen from './components/SplashScreen';
 import Registration from './components/Registration';
 import Login from './components/Login';
@@ -59,81 +57,176 @@ import Coding from './components/Coding';
 import Placement from './components/Placement';
 import Internship from './components/Internship';
 import Home from './components/Home';
-import  MenuDrawer from './components/L1'
-import MyDrawer from './components/MyDrawer';
 
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Stack = createNativeStackNavigator();
+
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Check the user's authentication status from AsyncStorage
+    checkAuthentication();
+  }, []);
+
+  const checkAuthentication = async () => {
+    try {
+      const email = await AsyncStorage.getItem('email');
+      const pass = await AsyncStorage.getItem('pass');
+
+      const isAuthenticated = email !== null && pass !== null;
+
+      setIsAuthenticated(isAuthenticated);
+
+      // if (isAuthenticated) {
+      //   // User is authenticated, navigate to the home screen
+
+      // }
+    } catch (error) {
+      console.log('Error retrieving credentials:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Render the navigation container and stack navigator
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-<Stack.Screen name="SplashScreen" component={SplashScreen} />
-      <Stack.Screen name="L1" component={L1} />
-      <Stack.Screen name="MyDrawer" component={MyDrawer} />
-<Stack.Screen name="ManuDrawer" component={MenuDrawer} />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="AboutPage" component={AboutPage} />
-        <Stack.Screen name="Subject1" component={Subject1} />
-        <Stack.Screen name="Internship" component={Internship} />
-        <Stack.Screen name="Placement" component={Placement} />
-        <Stack.Screen name="LCS2" component={LCS2} />
-        <Stack.Screen name="LCS3" component={LCS3} />
-        <Stack.Screen name="LCS4" component={LCS4} />
-        <Stack.Screen name="LCE2" component={LCE2} />
-        <Stack.Screen name="LCE3" component={LCE3} />
-        <Stack.Screen name="LCE4" component={LCE4} />
-        <Stack.Screen name="LECE2" component={LECE2} />
-        <Stack.Screen name="LECE3" component={LECE3} />
-        <Stack.Screen name="LECE4" component={LECE4} />
-        <Stack.Screen name="LEE2" component={LEE2} />
-        <Stack.Screen name="LEE3" component={LEE3} />
-        <Stack.Screen name="LEE4" component={LEE4} />
-        <Stack.Screen name="LME2" component={LME2} />
-        <Stack.Screen name="LME3" component={LME3} />
-        <Stack.Screen name="LME4" component={LME4} />
-        <Stack.Screen name="QCS2" component={QCS2} />
-        <Stack.Screen name="QCS3" component={QCS3} />
-        <Stack.Screen name="QCS4" component={QCS4} />
-        <Stack.Screen name="QCE2" component={QCE2} />
-        <Stack.Screen name="QCE3" component={QCE3} />
-        <Stack.Screen name="QCE4" component={QCE4} />
-        <Stack.Screen name="QECE2" component={QECE2} />
-        <Stack.Screen name="QECE3" component={QECE3} />
-        <Stack.Screen name="QECE4" component={QECE4} />
-        <Stack.Screen name="QEE2" component={QEE2} />
-        <Stack.Screen name="QEE3" component={QEE3} />
-        <Stack.Screen name="QEE4" component={QEE4} />
-        <Stack.Screen name="QME2" component={QME2} />
-        <Stack.Screen name="QME3" component={QME3} />
-        <Stack.Screen name="QME4" component={QME4} />
-        <Stack.Screen name="Q1" component={Q1} />
-        <Stack.Screen name="AS" component={AS} />
-        <Stack.Screen name="Coding" component={Coding} />
-        <Stack.Screen name="SubjectCS2" component={SubjectCS2} />
-        <Stack.Screen name="SubjectCS3" component={SubjectCS3} />
-        <Stack.Screen name="SubjectCS4" component={SubjectCS4} />
-        <Stack.Screen name="SubjectCivil2" component={SubjectCivil2} />
-        <Stack.Screen name="SubjectCivil3" component={SubjectCivl3} />
-        <Stack.Screen name="SubjectCivil4" component={SubjectCivil4} />
-        <Stack.Screen name="SubjectECE2" component={SubjectECE2} />
-        <Stack.Screen name="SubjectECE3" component={SubjectECE3} />
-        <Stack.Screen name="SubjectECE4" component={SubjectECE4} />
-        <Stack.Screen name="SubjectEE2" component={SubjectEE2} />
-        <Stack.Screen name="SubjectEE3" component={SubjectEE3} />
-        <Stack.Screen name="SubjectEE4" component={SubjectEE4} />
-        <Stack.Screen name="SubjectME2" component={SubjectME2} />
-        <Stack.Screen name="SubjectME3" component={SubjectME3} />
-        <Stack.Screen name="SubjectME4" component={SubjectME4} />
+        {isLoading ? (
+          <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        ) : isAuthenticated ? (
+          <Stack.Group>
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="SelectPrefer" component={SelectPrefer} />
+            <Stack.Screen name="L1" component={L1} />
+            <Stack.Screen name="AboutPage" component={AboutPage} />
+            <Stack.Screen name="Subject1" component={Subject1} />
+            <Stack.Screen name="Internship" component={Internship} />
+            <Stack.Screen name="Placement" component={Placement} />
+            <Stack.Screen name="LCS2" component={LCS2} />
+            <Stack.Screen name="LCS3" component={LCS3} />
+            <Stack.Screen name="LCS4" component={LCS4} />
+            <Stack.Screen name="LCE2" component={LCE2} />
+            <Stack.Screen name="LCE3" component={LCE3} />
+            <Stack.Screen name="LCE4" component={LCE4} />
+            <Stack.Screen name="LECE2" component={LECE2} />
+            <Stack.Screen name="LECE3" component={LECE3} />
+            <Stack.Screen name="LECE4" component={LECE4} />
+            <Stack.Screen name="LEE2" component={LEE2} />
+            <Stack.Screen name="LEE3" component={LEE3} />
+            <Stack.Screen name="LEE4" component={LEE4} />
+            <Stack.Screen name="LME2" component={LME2} />
+            <Stack.Screen name="LME3" component={LME3} />
+            <Stack.Screen name="LME4" component={LME4} />
+            <Stack.Screen name="QCS2" component={QCS2} />
+            <Stack.Screen name="QCS3" component={QCS3} />
+            <Stack.Screen name="QCS4" component={QCS4} />
+            <Stack.Screen name="QCE2" component={QCE2} />
+            <Stack.Screen name="QCE3" component={QCE3} />
+            <Stack.Screen name="QCE4" component={QCE4} />
+            <Stack.Screen name="QECE2" component={QECE2} />
+            <Stack.Screen name="QECE3" component={QECE3} />
+            <Stack.Screen name="QECE4" component={QECE4} />
+            <Stack.Screen name="QEE2" component={QEE2} />
+            <Stack.Screen name="QEE3" component={QEE3} />
+            <Stack.Screen name="QEE4" component={QEE4} />
+            <Stack.Screen name="QME2" component={QME2} />
+            <Stack.Screen name="QME3" component={QME3} />
+            <Stack.Screen name="QME4" component={QME4} />
+            <Stack.Screen name="Q1" component={Q1} />
+            <Stack.Screen name="AS" component={AS} />
+            <Stack.Screen name="Coding" component={Coding} />
+            <Stack.Screen name="SubjectCS2" component={SubjectCS2} />
+            <Stack.Screen name="SubjectCS3" component={SubjectCS3} />
+            <Stack.Screen name="SubjectCS4" component={SubjectCS4} />
+            <Stack.Screen name="SubjectCivil2" component={SubjectCivil2} />
+            <Stack.Screen name="SubjectCivil3" component={SubjectCivl3} />
+            <Stack.Screen name="SubjectCivil4" component={SubjectCivil4} />
+            <Stack.Screen name="SubjectECE2" component={SubjectECE2} />
+            <Stack.Screen name="SubjectECE3" component={SubjectECE3} />
+            <Stack.Screen name="SubjectECE4" component={SubjectECE4} />
+            <Stack.Screen name="SubjectEE2" component={SubjectEE2} />
+            <Stack.Screen name="SubjectEE3" component={SubjectEE3} />
+            <Stack.Screen name="SubjectEE4" component={SubjectEE4} />
+            <Stack.Screen name="SubjectME2" component={SubjectME2} />
+            <Stack.Screen name="SubjectME3" component={SubjectME3} />
+            <Stack.Screen name="SubjectME4" component={SubjectME4} />
+          </Stack.Group>
+        ) : (
+          <>
+            <Stack.Group>
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Registration" component={Registration} />
+              <Stack.Screen name="CompleteReg" component={CompleteReg} />
+              <Stack.Screen name="SelectPrefer" component={SelectPrefer} />
+              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="L1" component={L1} />
+              <Stack.Screen name="AboutPage" component={AboutPage} />
+              <Stack.Screen name="Subject1" component={Subject1} />
+              <Stack.Screen name="Internship" component={Internship} />
+              <Stack.Screen name="Placement" component={Placement} />
+              <Stack.Screen name="LCS2" component={LCS2} />
+              <Stack.Screen name="LCS3" component={LCS3} />
+              <Stack.Screen name="LCS4" component={LCS4} />
+              <Stack.Screen name="LCE2" component={LCE2} />
+              <Stack.Screen name="LCE3" component={LCE3} />
+              <Stack.Screen name="LCE4" component={LCE4} />
+              <Stack.Screen name="LECE2" component={LECE2} />
+              <Stack.Screen name="LECE3" component={LECE3} />
+              <Stack.Screen name="LECE4" component={LECE4} />
+              <Stack.Screen name="LEE2" component={LEE2} />
+              <Stack.Screen name="LEE3" component={LEE3} />
+              <Stack.Screen name="LEE4" component={LEE4} />
+              <Stack.Screen name="LME2" component={LME2} />
+              <Stack.Screen name="LME3" component={LME3} />
+              <Stack.Screen name="LME4" component={LME4} />
+              <Stack.Screen name="QCS2" component={QCS2} />
+              <Stack.Screen name="QCS3" component={QCS3} />
+              <Stack.Screen name="QCS4" component={QCS4} />
+              <Stack.Screen name="QCE2" component={QCE2} />
+              <Stack.Screen name="QCE3" component={QCE3} />
+              <Stack.Screen name="QCE4" component={QCE4} />
+              <Stack.Screen name="QECE2" component={QECE2} />
+              <Stack.Screen name="QECE3" component={QECE3} />
+              <Stack.Screen name="QECE4" component={QECE4} />
+              <Stack.Screen name="QEE2" component={QEE2} />
+              <Stack.Screen name="QEE3" component={QEE3} />
+              <Stack.Screen name="QEE4" component={QEE4} />
+              <Stack.Screen name="QME2" component={QME2} />
+              <Stack.Screen name="QME3" component={QME3} />
+              <Stack.Screen name="QME4" component={QME4} />
+              <Stack.Screen name="Q1" component={Q1} />
+              <Stack.Screen name="AS" component={AS} />
+              <Stack.Screen name="Coding" component={Coding} />
+              <Stack.Screen name="SubjectCS2" component={SubjectCS2} />
+              <Stack.Screen name="SubjectCS3" component={SubjectCS3} />
+              <Stack.Screen name="SubjectCS4" component={SubjectCS4} />
+              <Stack.Screen name="SubjectCivil2" component={SubjectCivil2} />
+              <Stack.Screen name="SubjectCivil3" component={SubjectCivl3} />
+              <Stack.Screen name="SubjectCivil4" component={SubjectCivil4} />
+              <Stack.Screen name="SubjectECE2" component={SubjectECE2} />
+              <Stack.Screen name="SubjectECE3" component={SubjectECE3} />
+              <Stack.Screen name="SubjectECE4" component={SubjectECE4} />
+              <Stack.Screen name="SubjectEE2" component={SubjectEE2} />
+              <Stack.Screen name="SubjectEE3" component={SubjectEE3} />
+              <Stack.Screen name="SubjectEE4" component={SubjectEE4} />
+              <Stack.Screen name="SubjectME2" component={SubjectME2} />
+              <Stack.Screen name="SubjectME3" component={SubjectME3} />
+              <Stack.Screen name="SubjectME4" component={SubjectME4} />
+            </Stack.Group>
+          </>
 
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Registration" component={Registration} />
-        <Stack.Screen name="CompleteReg" component={CompleteReg} />
-        <Stack.Screen name="SelectPrefer" component={SelectPrefer} />
-
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+

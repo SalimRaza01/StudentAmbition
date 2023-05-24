@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -14,14 +14,14 @@ import {
 } from 'react-native-responsive-dimensions';
 import CheckBox from '@react-native-community/checkbox';
 import SelectGender from './SelectGender';
-import {useNavigation} from '@react-navigation/native';
-import {createUserWithEmailAndPassword} from 'firebase/auth';
-import {auth} from '../firebase/firebase.config';
+import { useNavigation } from '@react-navigation/native';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/firebase.config';
 import NetInfo from '@react-native-community/netinfo';
 import LinearGradient from 'react-native-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Registration(props) {
-
   const navigation = useNavigation();
 
   const [isConnected, setIsConnected] = useState(true);
@@ -36,29 +36,38 @@ export default function Registration(props) {
   const [isChecked, setIsChecked] = useState(false);
   const [selected, setSelection] = useState(false);
 
-  
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
       setIsConnected(state.isConnected);
     });
-  
+
     return () => {
       unsubscribe();
     };
   }, []);
 
+  const saveCredentials = async () => {
+    try {
+      await AsyncStorage.setItem('email', email);
+      await AsyncStorage.setItem('pass', pass);
+    } catch (error) {
+      console.log('Error saving credentials:', error);
+    }
+  };
 
   const signUp = () => {
     if (!isConnected) {
       alert('No internet connection');
       return;
     }
-  
+
     createUserWithEmailAndPassword(auth, email, pass)
       .then(userCredential => {
-        // Registration successful
+        if (isChecked) {
+          saveCredentials();
+        }
+
         alert('Registration Successful');
-        // Perform navigation to 'CompleteReg' screen
         navigation.replace('CompleteReg');
       })
       .catch(error => {
@@ -71,7 +80,7 @@ export default function Registration(props) {
         }
       });
   };
-  
+
 
   const handleFirstNameChange = text => {
     const trimmedText = text.trim();
@@ -224,7 +233,7 @@ export default function Registration(props) {
             value={selected}
             onPress={handleCheckboxChange}
             onValueChange={setSelection}
-            tintColors={{true: '#2530A3', false: 'grey'}}
+            tintColors={{ true: '#2530A3', false: 'grey' }}
           />
           <Text style={styles.checktext}>
             i agree with Privacy Policy and Term & Conditions
@@ -248,7 +257,7 @@ export default function Registration(props) {
       <View style={styles.loginlink}>
         <Text>Already have an account?</Text>
         <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
-          <Text style={{color: '#C58BF2'}}> Login</Text>
+          <Text style={{ color: '#C58BF2' }}> Login</Text>
         </TouchableOpacity>
       </View>
     </View>
