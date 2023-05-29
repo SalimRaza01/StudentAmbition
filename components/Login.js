@@ -29,7 +29,7 @@ export default function LoginScreen(props) {
   const [pass, setPass] = useState('');
   const [passError, setPassError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  // const [passwordVisible, setPasswordVisible] = useState(false); 
+  const [passwordVisible, setPasswordVisible] = useState(false); 
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
@@ -186,9 +186,9 @@ export default function LoginScreen(props) {
           color="black"
           value={pass}
           onChangeText={handlePassChange}
-          // secureTextEntry={!passwordVisible} 
+          secureTextEntry={!passwordVisible} 
         />
-        {/* <TouchableOpacity onPress={togglePasswordVisibility}>
+        <TouchableOpacity onPress={togglePasswordVisibility}>
           <Image
             style={styles.eyeIcon}
             source={
@@ -197,7 +197,7 @@ export default function LoginScreen(props) {
                 : require('../assets/ShowPassword.png')
             }
           />
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
       {passError ? <Text style={styles.error}>{passError}</Text> : null}
 
