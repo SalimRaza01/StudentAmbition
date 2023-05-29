@@ -345,8 +345,8 @@ const styles = StyleSheet.create({
     fontFamily: 'poppins',
   },
   eyeIcon : {
-    marginLeft: responsiveWidth(35),
-    marginTop: responsiveHeight(2.3),
+    marginLeft: responsiveWidth(40),
+    marginTop: responsiveHeight(2.2),
     width: responsiveWidth(5),
     height: responsiveHeight(2.5),
   }
