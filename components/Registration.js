@@ -35,6 +35,7 @@ export default function Registration(props) {
   const [passError, setPassError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [selected, setSelection] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
@@ -81,57 +82,62 @@ export default function Registration(props) {
       });
   };
 
-
   const handleFirstNameChange = text => {
     const trimmedText = text.trim();
-
-    if (trimmedText.length < 3) {
+  
+    if (trimmedText === '') {
+      setFirstNameError('');
+    } else if (trimmedText.length < 3) {
       setFirstNameError('Name must be at least 3 characters');
     } else {
       setFirstNameError('');
     }
-
+  
     setFirstName(trimmedText);
-
+  
     if (text !== trimmedText) {
       alert('Whitespace is not allowed');
     }
   };
-
+  
   const handleLastNameChange = text => {
     const trimmedText = text.trim();
-
-    if (trimmedText.length < 3) {
+  
+    if (trimmedText === '') {
+      setLastNameError('');
+    } else if (trimmedText.length < 3) {
       setLastNameError('Name must be at least 3 characters');
     } else {
       setLastNameError('');
     }
-
+  
     setLastName(trimmedText);
-
+  
     if (text !== trimmedText) {
       alert('Whitespace is not allowed');
     }
   };
-
-
+  
   const handleEmailChange = text => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(text)) {
+    if (text.trim() === '') {
+      setEmailError('');
+    } else if (!emailRegex.test(text)) {
       setEmailError('Invalid email address');
     } else {
       setEmailError('');
     }
     setEmail(text);
   };
+  
   const handlePassChange = text => {
-    const passtrim = pass.trim();
+    const passtrim = text.trim();
     const passRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    if (!passRegex.test(text)) {
-      setPassError(
-        'Weak Password',
-      );
+    if (passtrim === '') {
+      setPassError('');
+    } else if (!passRegex.test(text)) {
+      setPassError('Weak Password');
     } else {
       setPassError('');
     }
@@ -140,6 +146,10 @@ export default function Registration(props) {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
   return (
@@ -257,7 +267,7 @@ export default function Registration(props) {
       <View style={styles.loginlink}>
         <Text>Already have an account?</Text>
         <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
-          <Text style={{ color: '#C58BF2' }}> Login</Text>
+          <Text style={{ color: 'blue' }}> Login</Text>
         </TouchableOpacity>
       </View>
     </View>

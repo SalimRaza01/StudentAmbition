@@ -16,7 +16,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { useNavigation } from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
 import NetInfo from '@react-native-community/netinfo';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -29,7 +29,7 @@ export default function LoginScreen(props) {
   const [pass, setPass] = useState('');
   const [passError, setPassError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
-  const [selected, setSelection] = useState(false);
+  // const [passwordVisible, setPasswordVisible] = useState(false); 
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
@@ -101,31 +101,61 @@ export default function LoginScreen(props) {
       });
   };
 
+  const resetPassword = () => {
+    if (email.trim() !== '') {
+      // Check if the email has a valid format using regular expressions
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        // Perform the password reset functionality
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            alert('Password reset email sent!');
+          })
+          .catch(error => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert('Failed to send password reset email.');
+          });
+      } else {
+        alert('Please enter a valid email');
+      }
+    } else {
+      alert('Please enter an email');
+    }
+  };
+
   const toggleCheckbox = () => {
     setIsChecked(!isChecked);
   };
 
   const handleEmailChange = text => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(text)) {
+    if (text.trim() === '') {
+      setEmailError('');
+    } else if (!emailRegex.test(text)) {
       setEmailError('Invalid email address');
     } else {
       setEmailError('');
     }
     setEmail(text);
   };
+
   const handlePassChange = text => {
-    const passtrim = pass.trim();
+    const passtrim = text.trim();
     const passRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-    if (!passRegex.test(text)) {
-      setPassError(
-        'Weak Password',
-      );
+    if (passtrim === '') {
+      setPassError('');
+    } else if (!passRegex.test(text)) {
+      setPassError('Weak Password');
     } else {
       setPassError('');
     }
     setPass(text);
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
   return (
@@ -156,7 +186,18 @@ export default function LoginScreen(props) {
           color="black"
           value={pass}
           onChangeText={handlePassChange}
+          // secureTextEntry={!passwordVisible} 
         />
+        {/* <TouchableOpacity onPress={togglePasswordVisibility}>
+          <Image
+            style={styles.eyeIcon}
+            source={
+              passwordVisible
+                ? require('../assets/HidePassword.png')
+                : require('../assets/ShowPassword.png')
+            }
+          />
+        </TouchableOpacity> */}
       </View>
       {passError ? <Text style={styles.error}>{passError}</Text> : null}
 
@@ -170,25 +211,43 @@ export default function LoginScreen(props) {
       </View>
 
       <TouchableOpacity
+        style={styles.login}
+        onPress={() => {
+          resetPassword();
+        }}>
+        <Text
+          style={{
+            color: 'blue',
+            fontSize: responsiveFontSize(1.4),
+            fontFamily: 'poppins',
+          }}>
+          Forgot Password ?
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
         style={styles.mybtn}
         onPress={() => {
           signIn();
         }}>
-        <LinearGradient colors={['#848AF28C', '#5A61C9FF']} style={styles.linearGradient}>
+        <LinearGradient
+          colors={['#848AF28C', '#5A61C9FF']}
+          style={styles.linearGradient}>
           <Text style={styles.btntext}>Login</Text>
         </LinearGradient>
       </TouchableOpacity>
 
       <View style={styles.loginlink}>
-        <Text>Don't have account ?</Text>
+        <Text>Don't have an account?</Text>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('Registration')}>
-          <Text style={{ color: '#C58BF2' }}> Create New </Text>
+          <Text style={{ color: 'blue' }}> Create New </Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
 
@@ -254,6 +313,10 @@ const styles = StyleSheet.create({
     marginLeft: responsiveWidth(25),
     marginTop: responsiveHeight(3),
   },
+  login: {
+    marginLeft: responsiveWidth(63),
+    marginTop: responsiveHeight(-2.8),
+  },
   mybtn: {
     backgroundColor: '#92A3FD',
     borderRadius: 30,
@@ -280,5 +343,11 @@ const styles = StyleSheet.create({
     color: 'grey',
     marginTop: responsiveHeight(0.2),
     fontFamily: 'poppins',
+  },
+  eyeIcon : {
+    marginLeft: responsiveWidth(35),
+    marginTop: responsiveHeight(2.3),
+    width: responsiveWidth(5),
+    height: responsiveHeight(2.5),
   }
 });
